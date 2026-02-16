@@ -17,3 +17,6 @@ ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_V
 
 alias ta='tmux attach || tmux new-session'
 alias td='tmux detach-client'
+
+# opencode
+export PATH=/home/yarick/.opencode/bin:$PATH
