@@ -115,3 +115,6 @@ source $ZSH/oh-my-zsh.sh
 
 alias ta='tmux attach || tmux new-session'
 alias td='tmux detach-client'
+
+# opencode
+export PATH=/home/yarick/.opencode/bin:$PATH

@@ -1,21 +1,44 @@
 return {
   {
     "saghen/blink.cmp",
-    opts = function(_, opts)
-      opts.keymap = opts.keymap or {}
+    opts = {
+      keymap = {
+        ["<C-y>"] = { "accept", "fallback" },
+        ["<C-j>"] = { "select_next", "fallback" },
+        ["<C-k>"] = { "select_prev", "fallback" },
 
-      opts.keymap["<CR>"] = { "fallback" }
+        ["<Tab>"] = {
+          "select_next",
+          "snippet_forward",
+          "fallback",
+        },
 
-      opts.keymap["<Tab>"] = {
-        function(cmp)
-          if cmp.is_visible() then
-            return cmp.accept()
-          end
-        end,
-        "fallback",
-      }
+        ["<S-Tab>"] = {
+          "select_prev",
+          "snippet_backward",
+          "fallback",
+        },
 
-      return opts
-    end,
+        ["<CR>"] = { "fallback" },
+      },
+
+      sources = {
+        default = {
+          "lsp",
+          "snippets",
+          "path",
+          "buffer",
+          "copilot",
+        },
+
+        providers = {
+          lsp = { score_offset = 100 },
+          snippets = { score_offset = 80 },
+          path = { score_offset = 60 },
+          buffer = { score_offset = 40 },
+          copilot = { score_offset = -100 },
+        },
+      },
+    },
   },
 }
