@@ -115,6 +115,15 @@ source $ZSH/oh-my-zsh.sh
 
 alias ta='tmux attach || tmux new-session'
 alias td='tmux detach-client'
+alias nv='nvim'
+alias yz='yazi'
+alias oc='opencode'
+alias ff='fastfetch'
 
-# opencode
+# source export
 export PATH=/home/yarick/.opencode/bin:$PATH
+export PATH="$HOME/.cargo/bin:$PATH"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
