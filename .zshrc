@@ -116,13 +116,25 @@ source $ZSH/oh-my-zsh.sh
 alias ta='tmux attach || tmux new-session'
 alias td='tmux detach-client'
 alias nv='nvim'
-alias yz='yazi'
 alias oc='opencode'
 alias ff='fastfetch'
 
 # source export
 export PATH=/home/yarick/.opencode/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Функция-обёртка для yazi
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+
+  yazi "$@" --cwd-file="$tmp"
+
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+
+  rm -f -- "$tmp"
+}
 
 
 # Load Angular CLI autocompletion.
