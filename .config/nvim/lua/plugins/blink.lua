@@ -8,7 +8,6 @@ return {
         ["<C-k>"] = { "select_prev", "fallback" },
 
         ["<Tab>"] = {
-          "select_next",
           "snippet_forward",
           "fallback",
         },
