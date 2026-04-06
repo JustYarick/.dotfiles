@@ -1,14 +1,44 @@
 [opener]
 edit = [{ run = 'nvim "$@"', desc = "Neovim", block = true }]
-
 default = [{ run = 'xdg-open "$@"', desc = "Open", orphan = true }]
 
 [open]
 rules = [
+  { url = "*.py", use = "edit" },
+  { url = "*.js", use = "edit" },
+  { url = "*.ts", use = "edit" },
+  { url = "*.rs", use = "edit" },
+  { url = "*.go", use = "edit" },
+  { url = "*.c", use = "edit" },
+  { url = "*.cpp", use = "edit" },
+  { url = "*.h", use = "edit" },
+  { url = "*.sh", use = "edit" },
+  { url = "*.lua", use = "edit" },
+  { url = "*.yaml", use = "edit" },
+  { url = "*.yml", use = "edit" },
+  { url = "*.toml", use = "edit" },
+  { url = "*.ini", use = "edit" },
+  { url = "*.conf", use = "edit" },
+  { url = "*.cfg", use = "edit" },
+  { url = "*.env", use = "edit" },
+  { url = "*.md", use = "edit" },
+  { url = "*.txt", use = "edit" },
+  { url = "*.json", use = "edit" },
+  { url = "*.xml", use = "edit" },
+  { url = "*.html", use = "edit" },
+  { url = "*.css", use = "edit" },
+  { url = "*.sql", use = "edit" },
+  { url = "*.tf", use = "edit" },
+  { url = "*.hcl", use = "edit" },
+  { url = ".env*", use = "edit" },
+  { url = ".gitignore", use = "edit" },
+  { url = "Dockerfile*", use = "edit" },
+  { url = "Makefile", use = "edit" },
+
   { mime = "text/*", use = "edit" },
+  { mime = "inode/x-empty", use = "edit" },
   { mime = "application/json", use = "edit" },
   { mime = "application/xml", use = "edit" },
-  { mime = "inode/x-empty", use = "edit" },
 
   { mime = "*", use = "default" },
 ]
