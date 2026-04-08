@@ -1,0 +1,16 @@
+configuration {
+    modi: "combi,window,drun,run";
+    show-icons: true;
+    display-combi: "All";
+    display-drun: "Apps";
+    display-run: "Run";
+    display-window: "Windows";
+
+    combi-modi: "window,drun,run";
+
+    sorting-method: "fzf";
+    case-sensitive: false;
+    cycle: true;
+}
+
+@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
