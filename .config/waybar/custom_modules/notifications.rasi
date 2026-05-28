@@ -1,0 +1,59 @@
+/**
+ * Notification Center Theme for Rofi
+ */
+
+* {
+    /* Gruvbox colors matching your style.css */
+    bg0:      #282828;
+    bg1:      #3c3836;
+    bg2:      #504945;
+    fg0:      #fbf1c7;
+    fg1:      #ebdbb2;
+    blue:     #458588;
+    yellow:   #d79921;
+    red:      #cc241d;
+    gray:     #928374;
+
+    background-color:   transparent;
+    text-color:         @fg1;
+    font:              "JetBrainsMono Nerd Font 10";
+}
+
+window {
+    background-color:   @bg0;
+    border:             1px;
+    border-color:       @bg2;
+    width:              350px;
+    location:           northeast;
+    anchor:             northeast;
+    x-offset:           -10px;
+    y-offset:           45px;
+    border-radius:      8px;
+}
+
+mainbox {
+    children:           [ listview ];
+    padding:            4px;
+}
+
+listview {
+    fixed-height:       false;
+    lines:              8;
+    scrollbar:          false;
+    spacing:            2px;
+}
+
+element {
+    padding:            8px;
+    border-radius:      4px;
+    margin:             2px;
+}
+
+element selected {
+    background-color:   @bg2;
+    text-color:         @fg0;
+}
+
+element-text {
+    vertical-align:     0.5;
+}
