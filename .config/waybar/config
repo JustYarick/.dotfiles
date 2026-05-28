@@ -1,0 +1,156 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "margin-top": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+    "spacing": 0,
+    
+    "modules-left": ["hyprland/workspaces", "hyprland/language", "custom/playerctl"],
+    "modules-center": ["clock"],
+    "modules-right": ["custom/cpugovernor", "temperature", "cpu", "custom/gpu", "network", "bluetooth", "pulseaudio", "idle_inhibitor", "custom/pacman", "tray", "custom/exit"],
+    
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "active-only": false,
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": []
+        },
+        "format": "{icon}",
+        "format-icons": {
+            "1": "Ⅰ",
+            "2": "Ⅱ",
+            "3": "Ⅲ",
+            "4": "Ⅳ",
+            "5": "Ⅴ",
+            "6": "Ⅵ",
+            "7": "Ⅶ",
+            "8": "Ⅷ",
+            "9": "Ⅸ",
+            "10": "Ⅹ",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+    "clock": {
+        "interval": 10,
+        "format": " {:%H:%M   %a %e/%m}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "on-click": "gnome-calendar"
+    },
+    "bluetooth": {
+        "interval": 30,
+        "format": "{icon}",
+        "format-icons": {
+            "enabled": "",
+            "disabled": ""
+        },
+        "on-click": "blueman-manager"
+    },    
+    "hyprland/language": {
+        "format": "  {}",
+        "format-en": "English",
+        "format-ru": "Russian"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": "true"
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "temperature": {
+        "interval": 1,
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "critical-threshold": 75,
+        "format-critical": " {temperatureC}°C",
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", ""],
+        "max-length": 8,
+        "min-length": 7,
+        "tooltip": false
+    },
+    "cpu": {
+        "interval": 5,      
+        "format": " {usage:2}%",
+        "on-click": "kitty -e htop",
+        "tooltip": false
+    },
+    "custom/gpu": {
+      "exec": "$HOME/.config/waybar/custom_modules/custom-gpu-nvidia.sh",
+      "return-type": "json",
+      "format": "{}",
+      "interval": 5,
+      "tooltip": "{tooltip}"
+    },     
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "Connected",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "",
+        "tooltip-format-wifi": "  {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%",
+        "tooltip-format-ethernet": "  {ifname}\nIP: {ipaddr}",
+        "on-click": "nm-connection-editor"
+    },
+    "pulseaudio": {
+        "scroll-step": 3,
+        "format": "{icon} {volume}% {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/pacman": {
+        "format": "􏆲 {}",
+        "interval": 3600,
+        "exec": "checkupdates 2>/dev/null | wc -l || echo 0",
+        "on-click": "kitty -e yay",
+        "max-length": 5,
+        "min-length": 3
+    },
+    "custom/cpugovernor": {
+      "format": "{icon}",
+      "interval": "once",
+      "return-type": "json",
+      "exec": "$HOME/.config/waybar/custom_modules/cpugovernor.sh",
+      "min-length": 2,
+      "max-length": 3,
+      "signal": 8,
+        "format-icons": {
+            "perf": "",
+            "ondemand": ""
+        },
+        "on-click": "$HOME/.config/waybar/custom_modules/cpugovernor.sh switch"
+    },
+    "custom/playerctl": {
+        "exec": "$HOME/.config/waybar/custom_modules/media-player-status.py",
+        "return-type": "json",
+        "on-click": "playerctl play-pause",
+        "max-length": 30
+    },
+    "custom/exit": {
+        "format": "",
+        "on-click": "wlogout",
+        "tooltip": false
+    }
+}

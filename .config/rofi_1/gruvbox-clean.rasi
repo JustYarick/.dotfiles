@@ -1,0 +1,87 @@
+/* =====================================================================
+   MUTE GRUVBOX RETRO THEME (NO EYE STRAIN)
+   ===================================================================== */
+
+* {
+    --bg-dark:   #282828ee;  /* Глубокий темный фон (с поддержкой твоего блюра) */
+    --bg-light:  #32302f;    /* Чуть светлее для инпут-бара */
+    --bg-select: #3c3836;    /* Мягкий серый для выделенной строки */
+    
+    --fg-light:  #ebdbb2;    /* Мягкий кремовый текст (не слепит) */
+    --fg-dark:   #928374;    /* Серо-коричневый для подсказок */
+    
+    --teal:      #458588;    /* Спокойный сине-бирюзовый (для рамки) */
+    --green:     #8ec07c;    /* Пастельный зеленый для промпта */
+    --yellow:    #d79921;    /* Матовый желтый (только для текста активной строки) */
+
+    background-color:   transparent;
+    text-color:         @--fg-light;
+    font:               "JetBrains Mono 11";
+}
+
+window {
+    background-color:   @--bg-dark;
+    border:             2px;       /* Сделал рамку чуть тоньше */
+    border-color:       @--teal;     /* Спокойный бирюзовый вместо желтого */
+    border-radius:      0px;
+    
+    width:              650px; 
+    anchor:             center;
+    location:           center;
+    x-offset:           0;
+    y-offset:           0;
+}
+
+mainbox {
+    padding:            25px; 
+    children:           [ inputbar, listview ];
+}
+
+inputbar {
+    spacing:            12px;
+    padding:            10px 15px;
+    background-color:   @--bg-light;
+    border-radius:      0px;
+    children:           [ prompt, entry ];
+    margin:             0px 0px 15px 0px;
+}
+
+prompt {
+    text-color:         @--green; 
+    font:               "JetBrains Mono Bold 11";
+}
+
+entry {
+    placeholder:        "Search...";
+    placeholder-color:  @--fg-dark;
+    text-color:         @--fg-light;
+}
+
+listview {
+    lines:              8; 
+    columns:            1;
+    fixed-height:       true;
+    cycle:              true;
+    scrollbar:          false;
+    spacing:            4px;
+}
+
+element {
+    padding:            10px 15px; 
+    spacing:            10px;
+    border-radius:      0px;
+}
+
+element normal normal, element alternate normal {
+    text-color:         @--fg-light;
+}
+
+element selected normal {
+    background-color:   @--bg-select; /* Мягкий темный фон для выделения */
+    text-color:         @--yellow;    /* Желтым подсвечивается ТОЛЬКО текст */
+}
+
+/* Глушим лишние цифры интерфейса */
+case-indicator, num-rows, textbox-numrows {
+    enabled:            false;
+}

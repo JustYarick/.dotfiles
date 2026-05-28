@@ -1,0 +1,84 @@
+/* Gruvbox - Synced with Waybar + Accents */
+
+@define-color bg0      #282828;
+@define-color bg1      #3c3836;
+@define-color bg2      #504945;
+@define-color fg0      #fbf1c7;
+@define-color fg1      #ebdbb2;
+@define-color red      #cc241d;
+@define-color green    #98971a;
+@define-color yellow   #d79921;
+@define-color blue     #458588;
+@define-color purple   #b16286;
+@define-color aqua     #689d6a;
+@define-color orange   #d65d0e;
+@define-color gray     #928374;
+
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 16px;
+    outline: none;
+}
+
+window {
+    margin: 0px;
+    border: 2px solid @orange; /* Оранжевая рамка как акцент */
+    background-color: @bg0;
+    border-radius: 4px;
+}
+
+#outer-box {
+    margin: 5px;
+    border: none;
+    background-color: @bg0;
+}
+
+#inner-box {
+    margin: 0px;
+    border: none;
+    background-color: @bg0;
+}
+
+#input {
+    margin: 5px;
+    border: 1px solid @bg2;
+    color: @fg1;
+    background-color: @bg1;
+    border-radius: 2px;
+    padding: 8px;
+}
+
+#input:focus {
+    border: 1px solid @yellow; /* Желтая рамка при поиске */
+}
+
+#scroll {
+    margin: 5px 0px;
+    border: none;
+}
+
+#text {
+    margin: 0px;
+    border: none;
+    color: @fg1;
+}
+
+#entry {
+    padding: 8px 12px;
+    border-radius: 2px;
+    margin: 2px 0px;
+}
+
+#entry:selected {
+    background-color: @bg2;
+    border-left: 3px solid @orange; /* Оранжевый индикатор выбора */
+}
+
+#entry:selected #text {
+    color: @yellow; /* Желтый текст при выборе */
+    font-weight: bold;
+}
+
+#img {
+    margin-right: 12px;
+}

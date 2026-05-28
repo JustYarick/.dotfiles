@@ -1,0 +1,155 @@
+
+/* Gruvbox Dark Palette */
+@define-color bg0      #282828;
+@define-color bg1      #3c3836;
+@define-color bg2      #504945;
+@define-color fg0      #fbf1c7;
+@define-color fg1      #ebdbb2;
+@define-color red      #cc241d;
+@define-color green    #98971a;
+@define-color yellow   #d79921;
+@define-color blue     #458588;
+@define-color purple   #b16286;
+@define-color aqua     #689d6a;
+@define-color orange   #d65d0e;
+@define-color gray     #928374;
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Noto Sans", "Font Awesome 6 Free";
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: @bg0;
+    border-bottom: 2px solid @bg2;
+    color: @fg1;
+}
+
+#workspaces {
+    background-color: @bg1;
+    border-right: 1px solid @bg2;
+}
+
+#workspaces button {
+    padding: 0 12px;
+    color: @gray;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+#workspaces button.active,
+#workspaces button.focused {
+    color: @fg0;
+    background-color: @bg2;
+}
+
+#workspaces button.urgent {
+    color: @red;
+}
+
+#workspaces button:hover {
+    background-color: @bg2;
+    color: @fg1;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#network.vpn,
+#network.throne-tun,
+#bluetooth,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#language,
+#custom-gpu,
+#custom-cpugovernor,
+#custom-pacman,
+#custom-playerctl,
+#custom-exit {
+    padding: 0 12px;
+    background-color: @bg1;
+    border-left: 1px solid @bg2;
+    color: @fg1;
+}
+
+#clock {
+    color: @aqua;
+    border-left: 1px solid @bg2;
+    border-right: 1px solid @bg2;
+}
+
+#pulseaudio {
+    color: @yellow;
+}
+
+#pulseaudio.muted {
+    color: @gray;
+}
+
+#network {
+    color: @blue;
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+#cpu {
+    color: @green;
+}
+
+#temperature {
+    color: @orange;
+}
+
+#custom-gpu {
+    color: @purple;
+}
+
+#tray {
+    padding: 0 8px;
+}
+
+#idle_inhibitor {
+    color: @orange;
+}
+
+#idle_inhibitor.activated {
+    color: @red;
+}
+
+#language {
+    color: @aqua;
+}
+
+#custom-pacman {
+    color: @red;
+}
+
+#custom-playerctl {
+    color: @fg1;
+    font-style: italic;
+    min-width: 150px;
+}
+
+#custom-exit {
+    color: @red;
+    padding-right: 15px;
+}
+
+#custom-cpugovernor {
+    color: @yellow;
+}

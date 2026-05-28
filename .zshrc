@@ -146,4 +146,4 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 
 eval "$(pyenv init --path)"
 eval "$(pyenv init - zsh)"
-eval "$(pyenv virtualenv-init -)"
+# eval "$(pyenv virtualenv-init -)"
