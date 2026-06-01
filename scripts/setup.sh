@@ -1,54 +1,54 @@
 #!/usr/bin/env bash
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  setup.sh — основной скрипт установки пакетов из .dotfiles/README.md
+#  setup.sh — Main installation script for packages listed in README.md
 # ─────────────────────────────────────────────────────────────────────────────
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 UTILS_FILE="$DOTFILES_DIR/scripts/utils.sh"
 
-# Подключаем утилиты
+# Load utilities
 if [[ -f "$UTILS_FILE" ]]; then
   source "$UTILS_FILE"
 else
-  echo "Ошибка: Не найден файл $UTILS_FILE"
+  echo "Error: $UTILS_FILE not found"
   exit 1
 fi
 
-# Обработка аргументов
+# Argument handling
 DRY_RUN="false"
 for arg in "$@"; do
   if [[ "$arg" == "--dry" ]]; then
     DRY_RUN="true"
-    _log WARN "Включен режим DRY-RUN: никакие изменения не будут внесены."
+    _log WARN "DRY-RUN mode enabled: no changes will be made."
   fi
 done
 
-_log INFO "Запуск полной установки системы на базе .dotfiles..."
+_log INFO "Starting full system installation based on .dotfiles..."
 
-# --- Официальные пакеты (pacman) ---
+# --- Official packages (pacman) ---
 OFFICIAL_PKGS=(
-  # Видеодрайверы
+  # Video drivers
   "nvidia-open" "nvidia-settings"
-  # Оболочка и WM
+  # Shell and WM
   "hyprland" "xdg-desktop-portal-hyprland" "polkit-kde-agent" "waybar" "wofi" "rofi"
-  # Терминал
+  # Terminal
   "kitty" "zsh" "tmux"
-  # Звук
+  # Audio
   "pipewire" "pipewire-pulse" "pipewire-alsa" "wireplumber" "easyeffects" "lsp-plugins" "rnnoise" "playerctl" "helvum"
-  # Файлы и графика
+  # Files and graphics
   "yazi" "nautilus" "grim" "slurp"
-  # Разработка
+  # Development
   "neovim" "docker" "docker-compose" "nodejs" "npm" "python-pip" "git" "lazygit"
-  # Сеть
+  # Network
   "networkmanager" "network-manager-applet" "ufw"
-  # Приложения
+  # Applications
   "firefox" "telegram-desktop" "steam" "gamescope"
-  # Шрифты и оформление
+  # Fonts and theming
   "ttf-jetbrains-mono-nerd" "noto-fonts" "noto-fonts-cjk" "noto-fonts-emoji" "adwaita-icon-theme"
 )
 
-# --- Пакеты из AUR (yay) ---
+# --- AUR packages (yay) ---
 AUR_PKGS=(
   "libva-nvidia-driver" "ly" "uwsm" "swaync" "hyprlock" "wlogout"
   "ghostty" "waypaper" "awww" "mpvpaper" "hyprshot"
@@ -57,68 +57,68 @@ AUR_PKGS=(
   "spotify" "localsend-bin" "onlyoffice-bin" "timeshift" "woff2-font-awesome"
 )
 
-# --- Пакеты из Flatpak ---
+# --- Flatpak packages ---
 FLATPAK_PKGS=(
   "com.discordapp.Discord"
 )
 
-_log INFO "Этап 1: Установка официальных пакетов..."
+_log INFO "Stage 1: Installing official packages..."
 for pkg in "${OFFICIAL_PKGS[@]}"; do
   install_pkg "$pkg" "official"
 done
 
-_log INFO "Этап 2: Установка пакетов из AUR..."
+_log INFO "Stage 2: Installing AUR packages..."
 for pkg in "${AUR_PKGS[@]}"; do
   install_pkg "$pkg" "aur"
 done
 
-_log INFO "Этап 3: Установка Flatpak пакетов..."
+_log INFO "Stage 3: Installing Flatpak packages..."
 for pkg in "${FLATPAK_PKGS[@]}"; do
   install_pkg "$pkg" "flatpak"
 done
 
-# --- Пост-установка ---
-_log INFO "Этап 4: Настройка дополнительных инструментов..."
+# --- Post-installation ---
+_log INFO "Stage 4: Configuring additional tools..."
 
-# Angular CLI (через npm, так как указано в README)
+# Angular CLI (via npm, as specified in README)
 if ! command -v ng &>/dev/null; then
   if [[ "$DRY_RUN" == "true" ]]; then
-    _log INFO "[DRY-RUN] Будет установлена @angular/cli через npm"
+    _log INFO "[DRY-RUN] @angular/cli will be installed via npm"
   else
-    _log INFO "Установка @angular/cli через npm..."
+    _log INFO "Installing @angular/cli via npm..."
     sudo npm install -g @angular/cli
   fi
 else
-  _log SKIP "Angular CLI уже установлен"
+  _log SKIP "Angular CLI is already installed"
 fi
 
-# Oh My Zsh (внешний источник)
+# Oh My Zsh (external source)
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   if [[ "$DRY_RUN" == "true" ]]; then
-    _log INFO "[DRY-RUN] Будет установлена Oh My Zsh"
+    _log INFO "[DRY-RUN] Oh My Zsh will be installed"
   else
-    _log INFO "Установка Oh My Zsh..."
+    _log INFO "Installing Oh My Zsh..."
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
   fi
 else
-  _log SKIP "Oh My Zsh уже установлен"
+  _log SKIP "Oh My Zsh is already installed"
 fi
 
-# Powerlevel10k (через OMZ Custom)
+# Powerlevel10k (via OMZ Custom)
 if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
   if [[ "$DRY_RUN" == "true" ]]; then
-    _log INFO "[DRY-RUN] Будет установлена тема Powerlevel10k в OMZ"
+    _log INFO "[DRY-RUN] Powerlevel10k theme will be installed in OMZ"
   else
-    _log INFO "Установка Powerlevel10k..."
+    _log INFO "Installing Powerlevel10k..."
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
   fi
 else
-  _log SKIP "Powerlevel10k уже установлен"
+  _log SKIP "Powerlevel10k is already installed"
 fi
 
 if [[ "$DRY_RUN" == "true" ]]; then
-  _log INFO "Симуляция завершена успешно."
+  _log INFO "Simulation completed successfully."
 else
-  _log INFO "Установка завершена! Перезагрузите систему или перезапустите сессию."
+  _log INFO "Installation complete! Please reboot your system or restart your session."
 fi

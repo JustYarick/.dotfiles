@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 # ─────────────────────────────────────────────
-#  utils.sh — вспомогательные функции установки
+#  utils.sh — Helper functions for installation
 # ─────────────────────────────────────────────
 
 LOG_FILE="${LOG_FILE:-$HOME/.dotfiles/install.log}"
 mkdir -p "$(dirname "$LOG_FILE")"
 
-# ── Логирование ────────────────────────────────
+# ── Logging ──────────────────────────────────
 _log() {
   local level="$1"
   shift
@@ -23,15 +23,15 @@ _log() {
   esac
 }
 
-# ── Проверка: установлен ли пакет любым способом ──
-# Принимает «базовое» имя пакета (без com. префиксов и т.п.)
+# ── Check: Is package installed by any method? ──
+# Accepts "base" package name (without com. prefixes, etc.)
 _is_installed() {
   local pkg="$1"
 
-  # pacman / yay (официальный репо + AUR)
+  # pacman / yay (official repo + AUR)
   pacman -Qq "$pkg" &>/dev/null && return 0
 
-  # flatpak — ищем по подстроке имени (без учёта регистра)
+  # flatpak — search by substring in name (case-insensitive)
   if command -v flatpak &>/dev/null; then
     flatpak list --columns=application 2>/dev/null |
       grep -qi "$pkg" && return 0
@@ -40,36 +40,36 @@ _is_installed() {
   return 1
 }
 
-# ── Получить «базовое» имя из flatpak-id ──
+# ── Get "base" name from flatpak-id ─────────────
 # com.discordapp.Discord → discord
 _basename_pkg() {
   local pkg="$1"
-  # берём последнее поле после точки, приводим к нижнему регистру
+  # take the last field after the dot, convert to lowercase
   echo "$pkg" | awk -F'.' '{print tolower($NF)}'
 }
 
-# ── Предложить установить инструмент ──────────────
+# ── Offer to install tool ───────────────────────
 _offer_install_tool() {
   local tool="$1"
   local install_cmd="$2"
 
   echo ""
-  read -r -p "  [?] '$tool' не установлен. Установить сейчас? [y/N] " answer
+  read -r -p "  [?] '$tool' is not installed. Install now? [y/N] " answer
   echo ""
   case "$answer" in
   [yY][eE][sS] | [yY])
-    _log INFO "Устанавливаем $tool..."
+    _log INFO "Installing $tool..."
     eval "$install_cmd"
     if command -v "$tool" &>/dev/null; then
-      _log INFO "$tool успешно установлен"
+      _log INFO "$tool installed successfully"
       return 0
     else
-      _log ERROR "Не удалось установить $tool"
+      _log ERROR "Failed to install $tool"
       return 1
     fi
     ;;
   *)
-    _log SKIP "$tool не установлен — пропуск"
+    _log SKIP "$tool not installed — skipping"
     return 1
     ;;
   esac
@@ -80,7 +80,7 @@ _offer_install_tool() {
 #
 #  <source>: official | aur | flatpak
 #
-#  Примеры:
+#  Examples:
 #    install_pkg "neovim"                  "official"
 #    install_pkg "yay"                     "aur"
 #    install_pkg "com.discordapp.Discord"  "flatpak"
@@ -90,35 +90,35 @@ install_pkg() {
   local source="$2"
 
   if [[ -z "$pkg" || -z "$source" ]]; then
-    _log ERROR "install_pkg: нужно передать имя пакета и источник (official|aur|flatpak)"
+    _log ERROR "install_pkg: package name and source (official|aur|flatpak) must be provided"
     return 1
   fi
 
-  # Базовое имя для кросс-проверки (напр. Discord из AUR и Flatpak — одно и то же)
+  # Base name for cross-checking (e.g., Discord from AUR and Flatpak are the same thing)
   local base
   base="$(_basename_pkg "$pkg")"
 
-  # ── Проверка: уже установлен? ──────────────────
+  # ── Check: Already installed? ──────────────────
   if _is_installed "$pkg" || _is_installed "$base"; then
-    _log SKIP "$pkg (${source}) — уже установлен, пропуск"
+    _log SKIP "$pkg (${source}) — already installed, skipping"
     return 0
   fi
 
   # ── Dry Run Mode ───────────────────────────────
   if [[ "$DRY_RUN" == "true" ]]; then
-    _log INFO "[DRY-RUN] Будет установлен пакет $pkg из источника $source"
+    _log INFO "[DRY-RUN] Package $pkg will be installed from $source"
     return 0
   fi
 
-  # ── Установка ──────────────────────────────────
+  # ── Installation ───────────────────────────────
   case "$source" in
 
   official)
-    _log INFO "Устанавливаем $pkg из официального репозитория..."
+    _log INFO "Installing $pkg from official repository..."
     if sudo pacman -S --noconfirm --needed "$pkg"; then
-      _log INFO "$pkg установлен успешно"
+      _log INFO "$pkg installed successfully"
     else
-      _log ERROR "Не удалось установить $pkg (pacman)"
+      _log ERROR "Failed to install $pkg (pacman)"
       return 1
     fi
     ;;
@@ -129,14 +129,14 @@ install_pkg() {
         "sudo pacman -S --needed --noconfirm git base-devel \
                      && git clone https://aur.archlinux.org/yay.git /tmp/yay \
                      && (cd /tmp/yay && makepkg -si --noconfirm) \
-                     && rm -rf /tmp/yay" || return 0 # return 0 = skip, не ошибка
+                     && rm -rf /tmp/yay" || return 0 # return 0 = skip, not an error
     fi
 
-    _log INFO "Устанавливаем $pkg из AUR..."
+    _log INFO "Installing $pkg from AUR..."
     if yay -S --noconfirm --needed "$pkg"; then
-      _log INFO "$pkg установлен успешно"
+      _log INFO "$pkg installed successfully"
     else
-      _log ERROR "Не удалось установить $pkg (yay/AUR)"
+      _log ERROR "Failed to install $pkg (yay/AUR)"
       return 1
     fi
     ;;
@@ -149,17 +149,17 @@ install_pkg() {
                         https://dl.flathub.org/repo/flathub.flatpakrepo" || return 0
     fi
 
-    _log INFO "Устанавливаем $pkg из Flatpak (Flathub)..."
+    _log INFO "Installing $pkg from Flatpak (Flathub)..."
     if flatpak install --noninteractive flathub "$pkg"; then
-      _log INFO "$pkg установлен успешно"
+      _log INFO "$pkg installed successfully"
     else
-      _log ERROR "Не удалось установить $pkg (flatpak)"
+      _log ERROR "Failed to install $pkg (flatpak)"
       return 1
     fi
     ;;
 
   *)
-    _log ERROR "Неизвестный источник '$source' для пакета $pkg (допустимо: official|aur|flatpak)"
+    _log ERROR "Unknown source '$source' for package $pkg (valid sources: official|aur|flatpak)"
     return 1
     ;;
   esac

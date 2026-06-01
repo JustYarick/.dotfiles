@@ -1,10 +1,30 @@
 # .dotfiles
 
-Мои конфигурационные файлы для системы на базе **Arch Linux** с тайлинговым оконным менеджером **Hyprland**.
+My configuration files for an **Arch Linux** based system with the **Hyprland** tiling window manager.
 
-## Установка
+## Screenshots
 
-Для управления конфигурациями используется [GNU Stow](https://www.gnu.org/software/stow/).
+| [![Screen 1](./screenshots/screen1.png)](./screenshots/screen1.png) | [![Screen 2](./screenshots/screen2.png)](./screenshots/screen2.png) |
+|:---:|:---:|
+| **Workspace 1** (Hyprland) | **Workspace 2** (Hyprland) |
+
+| [![Waybar](./screenshots/waybar.png)](./screenshots/waybar.png) | [![Rofi](./screenshots/wofi.png)](./screenshots/wofi.png) |
+|:---:|:---:|
+| **Waybar** (Status Bar) | **Rofi / Wofi** (App Launcher) |
+
+---
+
+## Configuration Overview
+
+*   **Hyprland**: A dynamic Wayland tiling compositor that provides smooth animations and flexible window management.
+*   **Waybar**: A highly customizable status bar displaying system info, network connectivity, and media player status.
+*   **Rofi/Wofi**: Minimalist menus for quick application launching and window switching.
+
+---
+
+## Installation
+
+[GNU Stow](https://www.gnu.org/software/stow/) is used for managing the configurations.
 
 ```bash
 git clone https://github.com/JustYarick/.dotfiles.git ~/.dotfiles
@@ -12,192 +32,192 @@ cd ~/.dotfiles
 stow .
 ```
 
-> Многие пакеты устанавливаются из **AUR** — рекомендуется использовать `yay`.
+> Many packages are installed from the **AUR** — using `yay` is recommended.
 
 ---
 
-## Системные компоненты
+## System Components
 
-### Видеодрайверы (NVIDIA)
+### Video Drivers (NVIDIA)
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
-| `nvidia-open` | Открытые модули ядра NVIDIA | official |
-| `nvidia-settings` | Панель управления настройками GPU | official |
-| `libva-nvidia-driver` | Аппаратное ускорение видео (VA-API) | AUR |
+| `nvidia-open` | NVIDIA open kernel modules | official |
+| `nvidia-settings` | GPU settings control panel | official |
+| `libva-nvidia-driver` | Hardware video acceleration (VA-API) | AUR |
 
 ---
 
-### Оболочка и оконный менеджер
+### Shell and Window Manager
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
-| `hyprland` | Основной тайлинговый WM (Wayland) | official |
-| `ly` | TUI Display Manager — экран входа в систему | AUR |
+| `hyprland` | Main tiling WM (Wayland) | official |
+| `ly` | TUI Display Manager — login screen | AUR |
 | `uwsm` | Universal Wayland Session Manager | AUR |
-| `xdg-desktop-portal-hyprland` | Системные порталы: скриншоты, шаринг экрана | official |
-| `polkit-kde-agent` | Агент аутентификации Polkit | official |
-| `waybar` | Статусная панель (скрипты в `.config/waybar/custom_modules/`) | official |
-| `swaync` | Центр уведомлений (SwayNC) | AUR |
-| `wofi` | Меню запуска приложений (Wayland-native) | official |
-| `rofi` | Альтернативный launcher и window switcher | official |
-| `hyprlock` | Блокировщик экрана для Hyprland | AUR |
-| `wlogout` | Меню выхода из сессии | AUR |
+| `xdg-desktop-portal-hyprland` | System portals: screenshots, screen sharing | official |
+| `polkit-kde-agent` | Polkit authentication agent | official |
+| `waybar` | Status bar (scripts in `.config/waybar/custom_modules/`) | official |
+| `swaync` | Notification center (SwayNC) | AUR |
+| `wofi` | Application launcher (Wayland-native) | official |
+| `rofi` | Alternative launcher and window switcher | official |
+| `hyprlock` | Screen locker for Hyprland | AUR |
+| `wlogout` | Session logout menu | AUR |
 
 ---
 
-### Терминал и окружение
+### Terminal and Environment
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
-| `ghostty` | Основной эмулятор терминала | AUR |
-| `kitty` | Альтернативный эмулятор терминала | official |
-| `zsh` | Основная оболочка | official |
-| `oh-my-zsh` | Фреймворк конфигурации zsh | external |
-| `powerlevel10k` | Тема для zsh (устанавливается как плагин OMZ) | external |
-| `tmux` | Мультиплексор терминала | official |
-| `fastfetch` | Информация о системе (alias: `ff`) | official |
+| `ghostty` | Main terminal emulator | AUR |
+| `kitty` | Alternative terminal emulator | official |
+| `zsh` | Main shell | official |
+| `oh-my-zsh` | Zsh configuration framework | external |
+| `powerlevel10k` | Zsh theme (installed as an OMZ plugin) | external |
+| `tmux` | Terminal multiplexer | official |
+| `fastfetch` | System info tool (alias: `ff`) | official |
 
 ---
 
-### Звук и мультимедиа
+### Audio and Multimedia
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
-| `pipewire` | Основной звуковой сервер | official |
-| `pipewire-pulse` | PulseAudio-совместимый слой поверх PipeWire | official |
-| `pipewire-alsa` | ALSA-совместимый слой поверх PipeWire | official |
-| `wireplumber` | Session manager для PipeWire | official |
-| `easyeffects` | Настройка и обработка звука | official |
-| `lsp-plugins` | Аудио-фильтры для EasyEffects | official |
-| `rnnoise` | Нейросетевое шумоподавление для EasyEffects | official |
-| `playerctl` | Управление медиаплеерами из статусбара | official |
-| `helvum` | Граф аудиопотоков PipeWire | official |
+| `pipewire` | Main audio server | official |
+| `pipewire-pulse` | PulseAudio-compatible layer for PipeWire | official |
+| `pipewire-alsa` | ALSA-compatible layer for PipeWire | official |
+| `wireplumber` | Session manager for PipeWire | official |
+| `easyeffects` | Audio processing and tuning | official |
+| `lsp-plugins` | Audio filters for EasyEffects | official |
+| `rnnoise` | Neural network noise reduction for EasyEffects | official |
+| `playerctl` | Media player control from status bar | official |
+| `helvum` | PipeWire audio stream graph | official |
 
 ---
 
-### Работа с файлами и обои
+### File Management and Wallpapers
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
-| `yazi` | Терминальный файловый менеджер | official |
-| `nautilus` | Графический файловый менеджер | official |
-| `waypaper` | GUI-менеджер обоев | AUR |
-| `awww` | Бэкенд обоев: GIF-анимация | AUR |
-| `mpvpaper` | Бэкенд обоев: видео | AUR |
-| `hyprshot` | Скриншоты (обёртка над grim + slurp) | AUR |
-| `grim` | Захват экрана на Wayland | official |
-| `slurp` | Интерактивный выбор области экрана | official |
+| `yazi` | Terminal file manager | official |
+| `nautilus` | GUI file manager | official |
+| `waypaper` | GUI wallpaper manager | AUR |
+| `awww` | Wallpaper backend: GIF animation | AUR |
+| `mpvpaper` | Wallpaper backend: video | AUR |
+| `hyprshot` | Screenshot tool (grim + slurp wrapper) | AUR |
+| `grim` | Screen capture for Wayland | official |
+| `slurp` | Interactive screen region selection | official |
 
 ---
 
-## Разработка и инструменты
+## Development and Tools
 
-### Редакторы
+### Editors
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
-| `neovim` | Основной редактор (дистрибутив LazyVim) | official |
-| `visual-studio-code-bin` | Альтернативный редактор / IDE | AUR |
+| `neovim` | Main editor (LazyVim distribution) | official |
+| `visual-studio-code-bin` | Alternative editor / IDE | AUR |
 
 ---
 
-### Контейнеризация
+### Containerization
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
-| `docker` | Контейнеризация приложений | official |
-| `docker-compose` | Оркестрация многоконтейнерных приложений | official |
+| `docker` | Application containerization | official |
+| `docker-compose` | Multi-container orchestration | official |
 
 ---
 
-### Языки и среды разработки
+### Languages and Runtimes
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
 | `nodejs` | JavaScript runtime (Node.js) | official |
-| `npm` | Менеджер пакетов Node | official |
-| `angular-cli` | CLI для Angular-проектов | npm |
-| `pyenv` | Менеджер версий Python | AUR |
-| `python-pip` | Менеджер пакетов Python | official |
-| `mongodb-bin` | СУБД MongoDB | AUR |
-| `mongodb-tools-bin` | Утилиты MongoDB (mongodump, mongorestore и др.) | AUR |
+| `npm` | Node package manager | official |
+| `angular-cli` | CLI for Angular projects | npm |
+| `pyenv` | Python version manager | AUR |
+| `python-pip` | Python package manager | official |
+| `mongodb-bin` | MongoDB database | AUR |
+| `mongodb-tools-bin` | MongoDB utilities (mongodump, mongorestore, etc.) | AUR |
 
 ---
 
 ### Git
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
-| `git` | Система контроля версий | official |
-| `lazygit` | TUI-клиент для удобной работы с Git | official |
+| `git` | Version control system | official |
+| `lazygit` | TUI client for convenient Git workflow | official |
 
 ---
 
-### Сеть и безопасность
+### Network and Security
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
-| `networkmanager` | Управление сетевыми подключениями | official |
-| `network-manager-applet` | Трей-апплет NetworkManager | official |
+| `networkmanager` | Network connection management | official |
+| `network-manager-applet` | NetworkManager tray applet | official |
 | `ufw` | Uncomplicated Firewall | official |
-| `v2ray-bin` | Прокси-ядро V2Ray | AUR |
-| `throne-bin` | Proxy / VCS-инструмент | AUR |
+| `v2ray-bin` | V2Ray proxy core | AUR |
+| `throne-bin` | Proxy / VCS tool | AUR |
 
 ---
 
-## Приложения
+## Applications
 
-### Браузеры
+### Browsers
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
-| `google-chrome` | Основной браузер | AUR |
-| `firefox` | Резервный браузер | official |
+| `google-chrome` | Main browser | AUR |
+| `firefox` | Secondary browser | official |
 
 ---
 
-### Мессенджеры и связь
+### Messaging and Communication
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
-| `telegram-desktop` | Мессенджер Telegram | official |
-| `com.discordapp.Discord` | Discord с автообновлениями | Flatpak |
-| `teamspeak3` | Голосовой чат TeamSpeak 3 | AUR |
-| `teamspeak` | Бета-версия TeamSpeak 6 | AUR |
+| `telegram-desktop` | Telegram messenger | official |
+| `com.discordapp.Discord` | Discord with auto-updates | Flatpak |
+| `teamspeak3` | TeamSpeak 3 voice chat | AUR |
+| `teamspeak` | TeamSpeak 6 beta version | AUR |
 
 ---
 
-### Игры
+### Gaming
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
-| `steam` | Игровая платформа Valve | official |
-| `gamescope` | Микрокомпозитор для игр (HDR, upscaling) | official |
+| `steam` | Valve's gaming platform | official |
+| `gamescope` | Micro-compositor for gaming (HDR, upscaling) | official |
 
 ---
 
-### Утилиты
+### Utilities
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
-| `spotify` | Стриминг музыки | AUR |
-| `localsend-bin` | Передача файлов в локальной сети (AirDrop-альтернатива) | AUR |
-| `onlyoffice-bin` | Офисный пакет (совместимость с .docx/.xlsx) | AUR |
-| `timeshift` | Снимки системы и бэкапы | AUR |
-| `cups` | Система печати | official |
+| `spotify` | Music streaming | AUR |
+| `localsend-bin` | Local network file transfer (AirDrop alternative) | AUR |
+| `onlyoffice-bin` | Office suite (.docx/.xlsx compatibility) | AUR |
+| `timeshift` | System snapshots and backups | AUR |
+| `cups` | Printing system | official |
 
 ---
 
-## Шрифты и оформление
+## Fonts and Theming
 
-| Пакет | Описание | Источник |
+| Package | Description | Source |
 |---|---|---|
-| `ttf-jetbrains-mono-nerd` | Основной моноширинный шрифт с Nerd Icons | official |
-| `noto-fonts` | Универсальный набор шрифтов | official |
-| `noto-fonts-cjk` | Поддержка CJK: китайский, японский, корейский | official |
-| `noto-fonts-emoji` | Поддержка emoji | official |
-| `woff2-font-awesome` | Font Awesome в формате WOFF2 (для Waybar) | AUR |
-| `adwaita-icon-theme` | Иконки и курсоры Adwaita | official |
+| `ttf-jetbrains-mono-nerd` | Main monospace font with Nerd Icons | official |
+| `noto-fonts` | Universal font set | official |
+| `noto-fonts-cjk` | CJK support: Chinese, Japanese, Korean | official |
+| `noto-fonts-emoji` | Emoji support | official |
+| `woff2-font-awesome` | Font Awesome in WOFF2 format (for Waybar) | AUR |
+| `adwaita-icon-theme` | Adwaita icons and cursors | official |
 
 ---

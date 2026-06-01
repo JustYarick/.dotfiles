@@ -1,5 +1,7 @@
 ^\.git
 ^scripts
+^screenshots
 ^README\.md
 ^install\.log
 .*\.md
+^wallpaper
