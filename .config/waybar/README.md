@@ -16,7 +16,7 @@ To ensure all buttons and features work correctly, please install the following 
 ### System Utilities
 ```bash
 # Using pacman (Arch Linux)
-sudo pacman -S waybar pavucontrol blueman gnome-calendar network-manager-applet
+sudo pacman -S waybar easyeffects blueman gnome-calendar network-manager-applet
 ```
 
 ### Media Control
