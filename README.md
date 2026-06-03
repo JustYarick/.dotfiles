@@ -54,7 +54,8 @@ stow .
 | `swaync` | Notification center (SwayNC) | AUR |
 | `wofi` | Application launcher (Wayland-native) | official |
 | `rofi` | Alternative launcher and window switcher | official |
-| `hyprlock` | Screen locker for Hyprland | AUR |
+| `hyprlock` | Screen locker for Hyprland | official |
+| `hypridle` | idle | official |
 | `wlogout` | Session logout menu | AUR |
 | **Terminal and Environment** | | |
 | `ghostty` | Main terminal emulator | AUR |
