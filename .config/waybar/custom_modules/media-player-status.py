@@ -10,12 +10,7 @@ from gi.repository import Playerctl, GLib  # noqa: E402
 ARTIST = 'xesam:artist'
 TITLE = 'xesam:title'
 ICONS = {
-    'spotify': '阮 ',
-    'ncspot': '阮 ',
-    'vlc': '嗢 ',
-    'firefox': ' ',
-    'default': '契 ',
-    'paused': ' '
+    'paused': '⏸'
 }
 
 last_status = None
@@ -45,31 +40,26 @@ def get_status(manager, vanished_player):
         css_class = 'paused'
     else:
         css_class = 'playing'
+    
     if title is None and artist is None:
         if css_class == 'paused':
-            icon = ICONS['paused']
+            return ICONS['paused'], f'{name.title()}: {css_class.title()}', css_class
         else:
-            icon = ICONS['default']
-            app_icon = ICONS.get(name, None)
-        if app_icon is None:
-            label = icon
-        else:
-            label = f'{icon} {app_icon}'
-        return label, f'{name.title()}: {css_class.title()}', css_class
-    if css_class == 'paused':
-        icon = ICONS['paused']
-    else:
-        # Added override for icon
-        #icon = ICONS.get(name, ICONS['default'])
-        icon = ICONS['default']
+            return name.title(), f'{name.title()}: {css_class.title()}', css_class
+
     if title is None or title == '':
         song = artist or name.title()
     elif artist is None or artist == '':
         song = f'{title}'
     else:
         song = f'{artist} – {title}'
+    
     html_song = html.escape(song)
-    return f'{icon} {html_song}', f'{name.title()}: {song}', css_class
+    
+    if css_class == 'paused':
+        return f'{ICONS["paused"]} {html_song}', f'{name.title()}: {song}', css_class
+    else:
+        return html_song, f'{name.title()}: {song}', css_class
 
 
 def print_status(manager, vanished_player=None):

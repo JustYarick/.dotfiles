@@ -9,7 +9,45 @@
     
     "modules-left": ["hyprland/workspaces", "hyprland/language", "custom/playerctl"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/cpugovernor", "temperature", "cpu", "custom/gpu", "network", "bluetooth", "pulseaudio", "pulseaudio#microphone", "idle_inhibitor", "custom/notification", "custom/pacman", "tray", "custom/exit"],
+    "modules-right": ["custom/cpu", "custom/gpu", "network", "bluetooth", "pulseaudio", "pulseaudio#microphone", "idle_inhibitor", "custom/notification", "custom/updates", "group/background", "custom/exit"],
+
+    "custom/cpu": {
+      "exec": "bash -c 'u=$(top -bn1 | grep \"Cpu(s)\" | awk \"{print 100 - \\$8}\" | cut -d. -f1); t=$(($(cat /sys/class/hwmon/hwmon1/temp1_input)/1000)); g=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor); i=\"\"; [ \"$g\" = \"performance\" ] && i=\"\"; echo \"{\\\"text\\\": \\\"$i ${t}°C ${u}%\\\", \\\"tooltip\\\": \\\"CPU Temp: ${t}°C\\\\nCPU Usage: ${u}%\\\\nGovernor: ${g}\\\\n\\\\nLeft-click: Open Monitor\\\\nRight-click: Cycle Mode\\\", \\\"class\\\": \\\"$g\\\"}\"'",
+      "return-type": "json",
+      "format": "{}",
+      "interval": 5,
+      "signal": 8,
+      "on-click": "ghostty -e htop",
+      "on-click-right": "pkexec bash -c 'g=($(cpupower frequency-info -g | grep -oP \"governors: \\K.*\")); c=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor); for i in ${!g[@]}; do if [ \"${g[i]}\" = \"$c\" ]; then cpupower frequency-set -g ${g[((i+1)%${#g[@]})]}; break; fi; done'; pkill -RTMIN+8 waybar"
+    },
+
+    "custom/updates": {
+        "format": "󰏗 {}",
+        "interval": 3600,
+        "exec": "$HOME/.config/waybar/custom_modules/updates.sh",
+        "return-type": "json",
+        "on-click": "kitty -e yay",
+        "max-length": 8,
+        "min-length": 3
+    },
+
+    "group/background": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "tray-child",
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/tray-icon",
+            "tray"
+        ]
+    },
+
+    "custom/tray-icon": {
+        "format": "",
+        "tooltip": false
+    },
 
     "custom/notification": {
         "tooltip": false,
@@ -86,26 +124,6 @@
         },
         "tooltip": "true"
     },
-    "tray": {
-        "spacing": 10
-    },
-    "temperature": {
-        "interval": 1,
-        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-        "critical-threshold": 75,
-        "format-critical": " {temperatureC}°C",
-        "format": "{icon} {temperatureC}°C",
-        "format-icons": ["", "", ""],
-        "max-length": 8,
-        "min-length": 7,
-        "tooltip": false
-    },
-    "cpu": {
-        "interval": 5,      
-        "format": " {usage:2}%",
-        "on-click": "kitty -e htop",
-        "tooltip": false
-    },
     "custom/gpu": {
       "exec": "$HOME/.config/waybar/custom_modules/custom-gpu-nvidia.sh",
       "return-type": "json",
@@ -141,34 +159,9 @@
     },
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "format-source": " {volume}%",
+        "format-source": "",
         "format-source-muted": "",
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+",
-        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-",
-        "scroll-step": 5
-    },
-    "custom/pacman": {
-        "format": "􏆲 {}",
-        "interval": 3600,
-        "exec": "checkupdates 2>/dev/null | wc -l || echo 0",
-        "on-click": "kitty -e yay",
-        "max-length": 5,
-        "min-length": 3
-    },
-    "custom/cpugovernor": {
-      "format": "{icon}",
-      "interval": "once",
-      "return-type": "json",
-      "exec": "$HOME/.config/waybar/custom_modules/cpugovernor.sh",
-      "min-length": 2,
-      "max-length": 3,
-      "signal": 8,
-        "format-icons": {
-            "perf": "",
-            "ondemand": ""
-        },
-        "on-click": "$HOME/.config/waybar/custom_modules/cpugovernor.sh switch"
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
     },
     "custom/playerctl": {
         "exec": "$HOME/.config/waybar/custom_modules/media-player-status.py",
@@ -176,6 +169,10 @@
         "on-click": "playerctl play-pause",
         "max-length": 30
     },
+    "tray": {
+        "spacing": 15
+    },
+
     "custom/exit": {
         "format": "",
         "on-click": "wlogout",
