@@ -9,7 +9,7 @@
     
     "modules-left": ["hyprland/workspaces", "hyprland/language", "custom/playerctl"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/cpugovernor", "temperature", "cpu", "custom/gpu", "network", "bluetooth", "pulseaudio", "idle_inhibitor", "custom/notification", "custom/pacman", "tray", "custom/exit"],
+    "modules-right": ["custom/cpugovernor", "temperature", "cpu", "custom/gpu", "network", "bluetooth", "pulseaudio", "pulseaudio#microphone", "idle_inhibitor", "custom/notification", "custom/pacman", "tray", "custom/exit"],
 
     "custom/notification": {
         "tooltip": false,
@@ -124,22 +124,29 @@
     },
     "pulseaudio": {
         "scroll-step": 3,
-        "format": "{icon} {volume}% {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "",
-        "format-source-muted": "",
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": "  {icon}  ",
+        "format-muted": " ",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": [" ", " ", "  "]
         },
         "on-click": "easyeffects"
+    },
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-",
+        "scroll-step": 5
     },
     "custom/pacman": {
         "format": "􏆲 {}",

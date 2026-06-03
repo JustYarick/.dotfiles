@@ -109,6 +109,7 @@ stow .
 | **Browsers** | | |
 | `google-chrome` | Main browser | AUR |
 | `firefox` | Secondary browser | official |
+| `brave-bin` | main browser | AUR |
 | **Messaging and Communication** | | |
 | `telegram-desktop` | Telegram messenger | official |
 | `com.discordapp.Discord` | Discord with auto-updates | Flatpak |
@@ -118,11 +119,13 @@ stow .
 | `steam` | Valve's gaming platform | official |
 | `gamescope` | Micro-compositor for gaming (HDR, upscaling) | official |
 | **Utilities** | | |
+| `obs-studio` | recording and streaming | official |
 | `spotify` | Music streaming | AUR |
 | `localsend-bin` | Local network file transfer (AirDrop alternative) | AUR |
 | `onlyoffice-bin` | Office suite (.docx/.xlsx compatibility) | AUR |
 | `timeshift` | System snapshots and backups | AUR |
 | `cups` | Printing system | official |
+| `vlc-plugins-all` | vlc support | official |
 | **Fonts and Theming** | | |
 | `ttf-jetbrains-mono-nerd` | Main monospace font with Nerd Icons | official |
 | `noto-fonts` | Universal font set | official |
