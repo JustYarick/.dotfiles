@@ -158,8 +158,28 @@ install_pkg() {
     fi
     ;;
 
+  npm)
+    if ! command -v npm &>/dev/null; then
+      _log ERROR "npm not found — cannot install $pkg"
+      return 1
+    fi
+
+    _log INFO "Installing $pkg via npm..."
+    if sudo npm install -g "$pkg"; then
+      _log INFO "$pkg installed successfully"
+    else
+      _log ERROR "Failed to install $pkg (npm)"
+      return 1
+    fi
+    ;;
+
+  external)
+    _log INFO "$pkg is an external tool, handling separately..."
+    return 0
+    ;;
+
   *)
-    _log ERROR "Unknown source '$source' for package $pkg (valid sources: official|aur|flatpak)"
+    _log ERROR "Unknown source '$source' for package $pkg (valid sources: official|aur|flatpak|npm|external)"
     return 1
     ;;
   esac

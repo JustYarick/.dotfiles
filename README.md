@@ -36,22 +36,15 @@ stow .
 
 ---
 
-## System Components
-
-### Video Drivers (NVIDIA)
+## Package List
 
 | Package | Description | Source |
-|---|---|---|
+|:---|:---|:---|
+| **System Components** | | |
 | `nvidia-open` | NVIDIA open kernel modules | official |
 | `nvidia-settings` | GPU settings control panel | official |
 | `libva-nvidia-driver` | Hardware video acceleration (VA-API) | AUR |
-
----
-
-### Shell and Window Manager
-
-| Package | Description | Source |
-|---|---|---|
+| **Shell and Window Manager** | | |
 | `hyprland` | Main tiling WM (Wayland) | official |
 | `ly` | TUI Display Manager — login screen | AUR |
 | `uwsm` | Universal Wayland Session Manager | AUR |
@@ -63,13 +56,7 @@ stow .
 | `rofi` | Alternative launcher and window switcher | official |
 | `hyprlock` | Screen locker for Hyprland | AUR |
 | `wlogout` | Session logout menu | AUR |
-
----
-
-### Terminal and Environment
-
-| Package | Description | Source |
-|---|---|---|
+| **Terminal and Environment** | | |
 | `ghostty` | Main terminal emulator | AUR |
 | `kitty` | Alternative terminal emulator | official |
 | `zsh` | Main shell | official |
@@ -77,13 +64,7 @@ stow .
 | `powerlevel10k` | Zsh theme (installed as an OMZ plugin) | external |
 | `tmux` | Terminal multiplexer | official |
 | `fastfetch` | System info tool (alias: `ff`) | official |
-
----
-
-### Audio and Multimedia
-
-| Package | Description | Source |
-|---|---|---|
+| **Audio and Multimedia** | | |
 | `pipewire` | Main audio server | official |
 | `pipewire-pulse` | PulseAudio-compatible layer for PipeWire | official |
 | `pipewire-alsa` | ALSA-compatible layer for PipeWire | official |
@@ -93,13 +74,7 @@ stow .
 | `rnnoise` | Neural network noise reduction for EasyEffects | official |
 | `playerctl` | Media player control from status bar | official |
 | `helvum` | PipeWire audio stream graph | official |
-
----
-
-### File Management and Wallpapers
-
-| Package | Description | Source |
-|---|---|---|
+| **File Management and Wallpapers** | | |
 | `yazi` | Terminal file manager | official |
 | `nautilus` | GUI file manager | official |
 | `waypaper` | GUI wallpaper manager | AUR |
@@ -108,33 +83,13 @@ stow .
 | `hyprshot` | Screenshot tool (grim + slurp wrapper) | AUR |
 | `grim` | Screen capture for Wayland | official |
 | `slurp` | Interactive screen region selection | official |
-
----
-
-## Development and Tools
-
-### Editors
-
-| Package | Description | Source |
-|---|---|---|
+| **Editors** | | |
 | `neovim` | Main editor (LazyVim distribution) | official |
-| `visual-studio-code-bin` | Alternative editor / IDE | AUR |
-
----
-
-### Containerization
-
-| Package | Description | Source |
-|---|---|---|
+| `zed` | Alternative editor / IDE | official |
+| **Containerization** | | |
 | `docker` | Application containerization | official |
 | `docker-compose` | Multi-container orchestration | official |
-
----
-
-### Languages and Runtimes
-
-| Package | Description | Source |
-|---|---|---|
+| **Languages and Runtimes** | | |
 | `nodejs` | JavaScript runtime (Node.js) | official |
 | `npm` | Node package manager | official |
 | `angular-cli` | CLI for Angular projects | npm |
@@ -142,77 +97,33 @@ stow .
 | `python-pip` | Python package manager | official |
 | `mongodb-bin` | MongoDB database | AUR |
 | `mongodb-tools-bin` | MongoDB utilities (mongodump, mongorestore, etc.) | AUR |
-
----
-
-### Git
-
-| Package | Description | Source |
-|---|---|---|
+| **Git** | | |
 | `git` | Version control system | official |
 | `lazygit` | TUI client for convenient Git workflow | official |
-
----
-
-### Network and Security
-
-| Package | Description | Source |
-|---|---|---|
+| **Network and Security** | | |
 | `networkmanager` | Network connection management | official |
 | `network-manager-applet` | NetworkManager tray applet | official |
 | `ufw` | Uncomplicated Firewall | official |
 | `v2ray-bin` | V2Ray proxy core | AUR |
 | `throne-bin` | Proxy / VCS tool | AUR |
-
----
-
-## Applications
-
-### Browsers
-
-| Package | Description | Source |
-|---|---|---|
+| **Browsers** | | |
 | `google-chrome` | Main browser | AUR |
 | `firefox` | Secondary browser | official |
-
----
-
-### Messaging and Communication
-
-| Package | Description | Source |
-|---|---|---|
+| **Messaging and Communication** | | |
 | `telegram-desktop` | Telegram messenger | official |
 | `com.discordapp.Discord` | Discord with auto-updates | Flatpak |
 | `teamspeak3` | TeamSpeak 3 voice chat | AUR |
 | `teamspeak` | TeamSpeak 6 beta version | AUR |
-
----
-
-### Gaming
-
-| Package | Description | Source |
-|---|---|---|
+| **Gaming** | | |
 | `steam` | Valve's gaming platform | official |
 | `gamescope` | Micro-compositor for gaming (HDR, upscaling) | official |
-
----
-
-### Utilities
-
-| Package | Description | Source |
-|---|---|---|
+| **Utilities** | | |
 | `spotify` | Music streaming | AUR |
 | `localsend-bin` | Local network file transfer (AirDrop alternative) | AUR |
 | `onlyoffice-bin` | Office suite (.docx/.xlsx compatibility) | AUR |
 | `timeshift` | System snapshots and backups | AUR |
 | `cups` | Printing system | official |
-
----
-
-## Fonts and Theming
-
-| Package | Description | Source |
-|---|---|---|
+| **Fonts and Theming** | | |
 | `ttf-jetbrains-mono-nerd` | Main monospace font with Nerd Icons | official |
 | `noto-fonts` | Universal font set | official |
 | `noto-fonts-cjk` | CJK support: Chinese, Japanese, Korean | official |
