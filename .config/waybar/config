@@ -2,28 +2,167 @@
     "layer": "top",
     "position": "top",
     "height": 34,
-    "margin-top": 0,
-    "margin-left": 0,
-    "margin-right": 0,
     "spacing": 0,
     
-    "modules-left": ["hyprland/workspaces", "hyprland/language", "custom/playerctl"],
-    "modules-center": ["clock"],
-    "modules-right": ["custom/cpu", "custom/gpu", "network", "bluetooth", "pulseaudio", "pulseaudio#microphone", "idle_inhibitor", "custom/notification", "custom/updates", "group/background", "custom/exit"],
+    "modules-left": [
+        "hyprland/workspaces", 
+        "hyprland/language", 
+        "custom/playerctl"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "custom/cpu", 
+        "custom/gpu", 
+        "network", 
+        "bluetooth", 
+        "pulseaudio", 
+        "pulseaudio#microphone", 
+        "idle_inhibitor", 
+        "custom/notification", 
+        "custom/updates", 
+        "group/background", 
+        "custom/exit"
+    ],
+
+    // --- LEFT MODULES ---
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "active-only": false,
+        "persistent-workspaces": {
+            "1": [], "2": [], "3": []
+        },
+        "format": "{icon}",
+        "format-icons": {
+            "1": "Ⅰ", "2": "Ⅱ", "3": "Ⅲ", "4": "Ⅳ", "5": "Ⅴ",
+            "6": "Ⅵ", "7": "Ⅶ", "8": "Ⅷ", "9": "Ⅸ", "10": "Ⅹ",
+            "urgent": "", "focused": "", "default": ""
+        }
+    },
+
+    "hyprland/language": {
+        "format": "  {}",
+        "format-en": "English",
+        "format-ru": "Russian"
+    },
+
+    "custom/playerctl": {
+        "exec": "$HOME/.config/waybar/scripts/media-player-status.py",
+        "return-type": "json",
+        "on-click": "playerctl play-pause",
+        "max-length": 30
+    },
+
+    // --- CENTER MODULES ---
+
+    "clock": {
+        "interval": 10,
+        "format": " {:%H:%M   %a %e/%m}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "on-click": "gnome-calendar"
+    },
+
+    // --- RIGHT MODULES ---
 
     "custom/cpu": {
-      "exec": "$HOME/.config/waybar/custom_modules/cpu_info.sh",
-      "return-type": "json",
-      "format": "{}",
-      "interval": 5,
-      "on-click": "ghostty -e btop",
-      "on-click-right": "bash -c 'p=($(powerprofilesctl list | grep -oP \"^[ \\*]* \\K[a-z-]+(?=:)\")); c=$(powerprofilesctl get); for i in \"${!p[@]}\"; do if [ \"${p[i]}\" = \"$c\" ]; then next_idx=$(((i+1)%${#p[@]})); powerprofilesctl set \"${p[next_idx]}\"; break; fi; done'"
+        "exec": "$HOME/.config/waybar/scripts/cpu_info.sh",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 5,
+        "on-click": "ghostty -e btop",
+        "on-click-right": "bash -c 'p=($(powerprofilesctl list | grep -oP \"^[ \\*]* \\K[a-z-]+(?=:)\")); c=$(powerprofilesctl get); for i in \"${!p[@]}\"; do if [ \"${p[i]}\" = \"$c\" ]; then next_idx=$(((i+1)%${#p[@]})); powerprofilesctl set \"${p[next_idx]}\"; break; fi; done'"
+    },
+
+    "custom/gpu": {
+        "exec": "$HOME/.config/waybar/scripts/custom-gpu-nvidia.sh",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 5,
+        "tooltip": "{tooltip}"
+    },
+
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "Connected",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "",
+        "tooltip-format-wifi": "  {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%",
+        "tooltip-format-ethernet": "  {ifname}\nIP: {ipaddr}",
+        "on-click": "nm-connection-editor"
+    },
+
+    "bluetooth": {
+        "interval": 30,
+        "format": "{icon}",
+        "format-icons": {
+            "enabled": "",
+            "disabled": ""
+        },
+        "on-click": "blueman-manager"
+    },
+
+    "pulseaudio": {
+        "scroll-step": 3,
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": "  {icon}  ",
+        "format-muted": " ",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": [" ", " ", "  "]
+        },
+        "on-click": "easyeffects"
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": "true"
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     },
 
     "custom/updates": {
         "format": "󰏗 {}",
         "interval": 3600,
-        "exec": "$HOME/.config/waybar/custom_modules/updates.sh",
+        "exec": "$HOME/.config/waybar/scripts/updates.sh",
         "return-type": "json",
         "on-click": "kitty -e yay",
         "max-length": 8,
@@ -48,126 +187,6 @@
         "tooltip": false
     },
 
-    "custom/notification": {
-        "tooltip": false,
-        "format": "{icon}",
-        "format-icons": {
-            "notification": "<span foreground='red'><sup></sup></span>",
-            "none": "",
-            "dnd-notification": "<span foreground='red'><sup></sup></span>",
-            "dnd-none": "",
-            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
-            "inhibited-none": "",
-            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
-            "dnd-inhibited-none": ""
-        },
-        "return-type": "json",
-        "exec-if": "which swaync-client",
-        "exec": "swaync-client -swb",
-        "on-click": "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
-        "escape": true
-    },
-    
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "active-only": false,
-        "persistent-workspaces": {
-            "1": [],
-            "2": [],
-            "3": []
-        },
-        "format": "{icon}",
-        "format-icons": {
-            "1": "Ⅰ",
-            "2": "Ⅱ",
-            "3": "Ⅲ",
-            "4": "Ⅳ",
-            "5": "Ⅴ",
-            "6": "Ⅵ",
-            "7": "Ⅶ",
-            "8": "Ⅷ",
-            "9": "Ⅸ",
-            "10": "Ⅹ",
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        }
-    },
-    "clock": {
-        "interval": 10,
-        "format": " {:%H:%M   %a %e/%m}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "on-click": "gnome-calendar"
-    },
-    "bluetooth": {
-        "interval": 30,
-        "format": "{icon}",
-        "format-icons": {
-            "enabled": "",
-            "disabled": ""
-        },
-        "on-click": "blueman-manager"
-    },    
-    "hyprland/language": {
-        "format": "  {}",
-        "format-en": "English",
-        "format-ru": "Russian"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        },
-        "tooltip": "true"
-    },
-    "custom/gpu": {
-      "exec": "$HOME/.config/waybar/custom_modules/custom-gpu-nvidia.sh",
-      "return-type": "json",
-      "format": "{}",
-      "interval": 5,
-      "tooltip": "{tooltip}"
-    },     
-    "network": {
-        "format-wifi": "  {essid}",
-        "format-ethernet": "Connected",
-        "format-linked": "{ifname} (No IP)",
-        "format-disconnected": "",
-        "tooltip-format-wifi": "  {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%",
-        "tooltip-format-ethernet": "  {ifname}\nIP: {ipaddr}",
-        "on-click": "nm-connection-editor"
-    },
-    "pulseaudio": {
-        "scroll-step": 3,
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}%",
-        "format-bluetooth-muted": "  {icon}  ",
-        "format-muted": " ",
-        "format-icons": {
-            "headphone": " ",
-            "hands-free": " ",
-            "headset": " ",
-            "phone": " ",
-            "portable": " ",
-            "car": " ",
-            "default": [" ", " ", "  "]
-        },
-        "on-click": "easyeffects"
-    },
-    "pulseaudio#microphone": {
-        "format": "{format_source}",
-        "format-source": "",
-        "format-source-muted": "",
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-    },
-    "custom/playerctl": {
-        "exec": "$HOME/.config/waybar/custom_modules/media-player-status.py",
-        "return-type": "json",
-        "on-click": "playerctl play-pause",
-        "max-length": 30
-    },
     "tray": {
         "spacing": 15
     },
