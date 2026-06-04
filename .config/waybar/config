@@ -12,13 +12,12 @@
     "modules-right": ["custom/cpu", "custom/gpu", "network", "bluetooth", "pulseaudio", "pulseaudio#microphone", "idle_inhibitor", "custom/notification", "custom/updates", "group/background", "custom/exit"],
 
     "custom/cpu": {
-      "exec": "bash -c 'u=$(top -bn1 | grep \"Cpu(s)\" | awk \"{print 100 - \\$8}\" | cut -d. -f1); t=$(($(cat /sys/class/hwmon/hwmon1/temp1_input)/1000)); g=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor); i=\"\"; [ \"$g\" = \"performance\" ] && i=\"\"; echo \"{\\\"text\\\": \\\"$i ${t}°C ${u}%\\\", \\\"tooltip\\\": \\\"CPU Temp: ${t}°C\\\\nCPU Usage: ${u}%\\\\nGovernor: ${g}\\\\n\\\\nLeft-click: Open Monitor\\\\nRight-click: Cycle Mode\\\", \\\"class\\\": \\\"$g\\\"}\"'",
+      "exec": "$HOME/.config/waybar/custom_modules/cpu_info.sh",
       "return-type": "json",
       "format": "{}",
       "interval": 5,
-      "signal": 8,
-      "on-click": "ghostty -e htop",
-      "on-click-right": "pkexec bash -c 'g=($(cpupower frequency-info -g | grep -oP \"governors: \\K.*\")); c=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor); for i in ${!g[@]}; do if [ \"${g[i]}\" = \"$c\" ]; then cpupower frequency-set -g ${g[((i+1)%${#g[@]})]}; break; fi; done'; pkill -RTMIN+8 waybar"
+      "on-click": "ghostty -e btop",
+      "on-click-right": "bash -c 'p=($(powerprofilesctl list | grep -oP \"^[ \\*]* \\K[a-z-]+(?=:)\")); c=$(powerprofilesctl get); for i in \"${!p[@]}\"; do if [ \"${p[i]}\" = \"$c\" ]; then next_idx=$(((i+1)%${#p[@]})); powerprofilesctl set \"${p[next_idx]}\"; break; fi; done'"
     },
 
     "custom/updates": {

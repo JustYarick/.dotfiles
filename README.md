@@ -57,7 +57,7 @@ stow .
 | `hyprlock` | Screen locker for Hyprland | official |
 | `hypridle` | idle | official |
 | `wlogout` | Session logout menu | AUR |
-| cpupower | change CPU power mode | official |
+| `power-profiles-daemon` | change CPU power mode | official |
 | **Terminal and Environment** | | |
 | `ghostty` | Main terminal emulator | AUR |
 | `kitty` | Alternative terminal emulator | official |

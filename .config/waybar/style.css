@@ -114,6 +114,18 @@ window#waybar {
     color: @green;
 }
 
+#custom-cpu.performance {
+    color: @red;
+}
+
+#custom-cpu.balanced {
+    color: @green;
+}
+
+#custom-cpu.power-saver {
+    color: @aqua;
+}
+
 #custom-gpu {
     color: @purple;
 }
