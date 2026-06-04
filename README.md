@@ -82,7 +82,7 @@ stow .
 | `waypaper` | GUI wallpaper manager | AUR |
 | `awww` | Wallpaper backend: GIF animation | AUR |
 | `mpvpaper` | Wallpaper backend: video | AUR |
-| `hyprshot` | Screenshot tool (grim + slurp wrapper) | AUR |
+| `flameshot` | Screenshot tool | official |
 | `grim` | Screen capture for Wayland | official |
 | `slurp` | Interactive screen region selection | official |
 | **Editors** | | |
@@ -128,6 +128,9 @@ stow .
 | `timeshift` | System snapshots and backups | AUR |
 | `cups` | Printing system | official |
 | `vlc-plugins-all` | vlc support | official |
+| `pinta` | paint program | AUR |
+| `gimp` | photo editor | official |
+| `winboat` | windows VM in docker | AUR |
 | **Fonts and Theming** | | |
 | `ttf-jetbrains-mono-nerd` | Main monospace font with Nerd Icons | official |
 | `noto-fonts` | Universal font set | official |
