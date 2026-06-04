@@ -83,6 +83,7 @@ stow .
 | `awww` | Wallpaper backend: GIF animation | AUR |
 | `mpvpaper` | Wallpaper backend: video | AUR |
 | `flameshot` | Screenshot tool | official |
+| `grim` | tool for flameshot | official |
 | `grim` | Screen capture for Wayland | official |
 | `slurp` | Interactive screen region selection | official |
 | **Editors** | | |
