@@ -147,3 +147,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init - zsh)"
 # eval "$(pyenv virtualenv-init -)"
+
+export ANDROID_HOME=/opt/android-sdk
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1

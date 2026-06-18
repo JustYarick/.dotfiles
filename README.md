@@ -46,7 +46,6 @@ stow .
 | `libva-nvidia-driver` | Hardware video acceleration (VA-API) | AUR |
 | **Shell and Window Manager** | | |
 | `hyprland` | Main tiling WM (Wayland) | official |
-| `ly` | TUI Display Manager — login screen | AUR |
 | `uwsm` | Universal Wayland Session Manager | AUR |
 | `xdg-desktop-portal-hyprland` | System portals: screenshots, screen sharing | official |
 | `polkit-kde-agent` | Polkit authentication agent | official |
