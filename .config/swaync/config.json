@@ -1,0 +1,19 @@
+{
+  "positionX": "right",
+  "positionY": "top",
+  "layer": "top",
+  "cssPriority": "application",
+  "control-center-margin-top": 12,
+  "control-center-margin-bottom": 12,
+  "control-center-margin-right": 12,
+  "control-center-width": 400,
+  "notification-window-width": 400,
+  "transition-time": 200,
+  "hide-on-clear": false,
+  "hide-on-touch": true,
+  "widgets": [
+    "title",
+    "dnd",
+    "notifications"
+  ]
+}
