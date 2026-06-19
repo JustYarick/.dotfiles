@@ -116,7 +116,6 @@ stow .
 | `telegram-desktop` | Telegram messenger | official |
 | `com.discordapp.Discord` | Discord with auto-updates | Flatpak |
 | `teamspeak3` | TeamSpeak 3 voice chat | AUR |
-| `teamspeak` | TeamSpeak 6 beta version | AUR |
 | **Gaming** | | |
 | `steam` | Valve's gaming platform | official |
 | `gamescope` | Micro-compositor for gaming (HDR, upscaling) | official |

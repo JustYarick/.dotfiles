@@ -137,8 +137,6 @@ function y() {
 }
 
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"

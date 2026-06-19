@@ -22,6 +22,7 @@
         "idle_inhibitor", 
         "custom/notification", 
         "custom/updates", 
+        "custom/battery", 
         "group/background", 
         "custom/exit"
     ],
@@ -77,7 +78,8 @@
     },
 
     "custom/gpu": {
-        "exec": "$HOME/.config/waybar/scripts/custom-gpu-nvidia.sh",
+        "exec-if": "$HOME/.config/waybar/scripts/check-gpu.sh",
+        "exec": "$HOME/.config/waybar/scripts/gpu_info.sh",
         "return-type": "json",
         "format": "{}",
         "interval": 5,
@@ -167,6 +169,14 @@
         "on-click": "ghostty -e yay",
         "max-length": 8,
         "min-length": 3
+    },
+
+    "custom/battery": {
+        "exec": "$HOME/.config/waybar/scripts/battery_info.sh",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 30,
+        "on-click": "ghostty -e htop"
     },
 
     "group/background": {
