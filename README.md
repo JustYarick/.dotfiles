@@ -1,12 +1,12 @@
 # .dotfiles
 
-My configuration files for an **Arch Linux** based system with the **Hyprland** tiling window manager.
+My configuration files for an **Arch Linux** laptop running the **Hyprland** tiling window manager.
 
 ## Screenshots
 
-| [![Screen 1](./screenshots/screen1.png)](./screenshots/screen1.png) | [![Screen 2](./screenshots/screen2.png)](./screenshots/screen2.png) |
-|:---:|:---:|
-| **Workspace 1** (Hyprland) | **Workspace 2** (Hyprland) |
+| [![Desktop](./screenshots/screen1.png)](./screenshots/screen1.png) |
+|:---:|
+| **Desktop** (Hyprland) |
 
 | [![Waybar](./screenshots/waybar.png)](./screenshots/waybar.png) | [![Rofi](./screenshots/wofi.png)](./screenshots/wofi.png) |
 |:---:|:---:|
@@ -16,9 +16,9 @@ My configuration files for an **Arch Linux** based system with the **Hyprland** 
 
 ## Configuration Overview
 
-*   **Hyprland**: A dynamic Wayland tiling compositor that provides smooth animations and flexible window management.
-*   **Waybar**: A highly customizable status bar displaying system info, network connectivity, and media player status.
-*   **Rofi/Wofi**: Minimalist menus for quick application launching and window switching.
+*   **Hyprland**: Dynamic Wayland tiling compositor with smooth animations and flexible window management, tuned for laptop use (keyboard-centric, touchpad gestures).
+*   **Waybar**: Customizable status bar with system info, network, media, and battery/power profiles.
+*   **Rofi/Wofi**: Minimalist launchers for quick app launching and window switching.
 
 ---
 
@@ -57,6 +57,7 @@ stow .
 | `hypridle` | idle | official |
 | `wlogout` | Session logout menu | AUR |
 | `power-profiles-daemon` | change CPU power mode | official |
+| `brightnessctl` | Backlight/display brightness control | official |
 | **Terminal and Environment** | | |
 | `ghostty` | Main terminal emulator | AUR |
 | `kitty` | Alternative terminal emulator | official |
@@ -65,6 +66,7 @@ stow .
 | `powerlevel10k` | Zsh theme (installed as an OMZ plugin) | external |
 | `tmux` | Terminal multiplexer | official |
 | `fastfetch` | System info tool (alias: `ff`) | official |
+| `btop` | System resource monitor (CPU, RAM, etc.) | official |
 | **Audio and Multimedia** | | |
 | `pipewire` | Main audio server | official |
 | `pipewire-pulse` | PulseAudio-compatible layer for PipeWire | official |
@@ -105,6 +107,7 @@ stow .
 | **Network and Security** | | |
 | `networkmanager` | Network connection management | official |
 | `network-manager-applet` | NetworkManager tray applet | official |
+| `blueman` | Bluetooth manager | official |
 | `ufw` | Uncomplicated Firewall | official |
 | `v2ray-bin` | V2Ray proxy core | AUR |
 | `throne-bin` | Proxy / VCS tool | AUR |
@@ -124,6 +127,8 @@ stow .
 | `spotify` | Music streaming | AUR |
 | `localsend-bin` | Local network file transfer (AirDrop alternative) | AUR |
 | `onlyoffice-bin` | Office suite (.docx/.xlsx compatibility) | AUR |
+| `gnome-calculator` | GUI calculator | official |
+| `gnome-calendar` | GUI calendar | official |
 | `timeshift` | System snapshots and backups | AUR |
 | `cups` | Printing system | official |
 | `vlc-plugins-all` | vlc support | official |
