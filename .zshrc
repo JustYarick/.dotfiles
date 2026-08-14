@@ -148,6 +148,12 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init - zsh)"
 # eval "$(pyenv virtualenv-init -)"
 
-export ANDROID_HOME=/opt/android-sdk
+export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/yarick/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
