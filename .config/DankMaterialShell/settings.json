@@ -1,5 +1,7 @@
 {
   "configVersion": 13,
+  "currentThemeName": "dynamic",
+  "currentThemeCategory": "dynamic",
   "barConfigs": [
     {
       "id": "default",
