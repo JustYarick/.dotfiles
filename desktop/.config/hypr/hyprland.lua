@@ -35,6 +35,7 @@ hl.config({
 	},
 	dwindle = {
 		force_split = 2,
+		preserve_split = true,
 	},
 	decoration = {
 		active_opacity = 1.0,
