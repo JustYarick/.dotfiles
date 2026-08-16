@@ -158,7 +158,15 @@
     {
       "id": "idleInhibitor",
       "enabled": true,
-      "width": 100
+      "width": 50
+    },
+    {
+      "id": "diskUsage",
+      "enabled": true,
+      "width": 50,
+      "instanceId": "msvvo0c8xwxrwdxyiu7z00goml5jt",
+      "mountPath": "/",
+      "showMountPath": true
     }
   ],
   "showWorkspaceIndex": false,
@@ -598,8 +606,7 @@
       "showOnLastDisplay": true,
       "leftWidgets": [
         "launcherButton",
-        "workspaceSwitcher",
-        "focusedWindow"
+        "workspaceSwitcher"
       ],
       "centerWidgets": [
         "music",
