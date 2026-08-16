@@ -1,4 +1,4 @@
 *.env
 install.log
-.config/DankMaterialShell/.changelog-*
-.config/DankMaterialShell/.firstlaunch
+**/DankMaterialShell/.changelog-*
+**/DankMaterialShell/.firstlaunch
