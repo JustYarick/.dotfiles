@@ -8,17 +8,16 @@ My configuration files for an **Arch Linux** based system with the **Hyprland** 
 |:---:|:---:|
 | **Workspace 1** (Hyprland) | **Workspace 2** (Hyprland) |
 
-| [![Waybar](./screenshots/waybar.png)](./screenshots/waybar.png) | [![Rofi](./screenshots/wofi.png)](./screenshots/wofi.png) |
+| [![DMS](./screenshots/dms.png)](./screenshots/dms.png) | |
 |:---:|:---:|
-| **Waybar** (Status Bar) | **Rofi / Wofi** (App Launcher) |
+| **DankMaterialShell** (Shell) | |
 
 ---
 
 ## Configuration Overview
 
 *   **Hyprland**: A dynamic Wayland tiling compositor that provides smooth animations and flexible window management.
-*   **Waybar**: A highly customizable status bar displaying system info, network connectivity, and media player status.
-*   **Rofi/Wofi**: Minimalist menus for quick application launching and window switching.
+*   **DankMaterialShell (DMS)**: Modern desktop shell — status bar, spotlight launcher, notifications, control center, lock screen, idle, and polkit agent (replaces Waybar, SwayNC, Wofi/Rofi, Hyprlock, Hypridle, Wlogout, Flameshot).
 
 ---
 
@@ -48,14 +47,10 @@ stow .
 | `hyprland` | Main tiling WM (Wayland) | official |
 | `uwsm` | Universal Wayland Session Manager | AUR |
 | `xdg-desktop-portal-hyprland` | System portals: screenshots, screen sharing | official |
-| `polkit-kde-agent` | Polkit authentication agent | official |
-| `waybar` | Status bar (scripts in `.config/waybar/custom_modules/`) | official |
-| `swaync` | Notification center (SwayNC) | AUR |
-| `wofi` | Application launcher (Wayland-native) | official |
-| `rofi` | Alternative launcher and window switcher | official |
-| `hyprlock` | Screen locker for Hyprland | official |
-| `hypridle` | idle | official |
-| `wlogout` | Session logout menu | AUR |
+| `dms-shell` | DankMaterialShell desktop shell (status bar, launcher, notifications, lock, idle, polkit) | official |
+| `matugen` | Material you color generation for DMS theming | official |
+| `dsearch` | DMS spotlight file search | AUR |
+| `dankcalendar-bin` | DMS calendar integration | AUR |
 | `power-profiles-daemon` | change CPU power mode | official |
 | **Terminal and Environment** | | |
 | `ghostty` | Main terminal emulator | AUR |
@@ -78,11 +73,7 @@ stow .
 | **File Management and Wallpapers** | | |
 | `yazi` | Terminal file manager | official |
 | `nautilus` | GUI file manager | official |
-| `waypaper` | GUI wallpaper manager | AUR |
-| `awww` | Wallpaper backend: GIF animation | AUR |
 | `mpvpaper` | Wallpaper backend: video | AUR |
-| `flameshot` | Screenshot tool | official |
-| `grim` | tool for flameshot | official |
 | `grim` | Screen capture for Wayland | official |
 | `slurp` | Interactive screen region selection | official |
 | **Editors** | | |
@@ -136,7 +127,6 @@ stow .
 | `noto-fonts` | Universal font set | official |
 | `noto-fonts-cjk` | CJK support: Chinese, Japanese, Korean | official |
 | `noto-fonts-emoji` | Emoji support | official |
-| `woff2-font-awesome` | Font Awesome in WOFF2 format (for Waybar) | AUR |
 | `adwaita-icon-theme` | Adwaita icons and cursors | official |
 
 ---
