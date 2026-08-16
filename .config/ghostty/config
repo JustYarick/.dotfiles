@@ -1,3 +1,2 @@
-theme = Dark+
+theme = dankcolors
 keybind = ctrl+shift+r=reload_config
-background = 282828

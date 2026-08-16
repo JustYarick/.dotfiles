@@ -33,15 +33,22 @@ hl.config({
 		disable_hyprland_logo = true,
 		disable_splash_rendering = true,
 	},
+	dwindle = {
+		force_split = 2,
+	},
+	decoration = {
+		active_opacity = 1.0,
+		inactive_opacity = 0.95,
+	},
 })
 
 -- === Animations ===
-hl.animation({ leaf = "windowsIn", enabled = true, speed = 3, bezier = "default" })
-hl.animation({ leaf = "windowsOut", enabled = true, speed = 3, bezier = "default" })
-hl.animation({ leaf = "workspaces", enabled = true, speed = 5, bezier = "default" })
-hl.animation({ leaf = "windowsMove", enabled = true, speed = 4, bezier = "default" })
-hl.animation({ leaf = "fade", enabled = true, speed = 3, bezier = "default" })
-hl.animation({ leaf = "border", enabled = true, speed = 3, bezier = "default" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 2, bezier = "default" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 2, bezier = "default" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 2, bezier = "default" })
+hl.animation({ leaf = "windowsMove", enabled = true, speed = 2, bezier = "default" })
+hl.animation({ leaf = "fade", enabled = true, speed = 2, bezier = "default" })
+hl.animation({ leaf = "border", enabled = true, speed = 2, bezier = "default" })
 
 -- === DMS layer rules ===
 hl.layer_rule({ match = { namespace = "^quickshell$" }, no_anim = true })
