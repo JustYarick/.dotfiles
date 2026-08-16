@@ -47,7 +47,7 @@ stow laptop   # For laptop
 | `hyprland` | Main tiling WM (Wayland) | official |
 | `uwsm` | Universal Wayland Session Manager | AUR |
 | `xdg-desktop-portal-hyprland` | System portals: screenshots, screen sharing | official |
-| `dms-shell` | DankMaterialShell desktop shell (status bar, launcher, notifications, lock, idle, polkit) | official |
+| `dms-quickshell` | DankMaterialShell (Quickshell version) desktop shell (status bar, launcher, notifications, etc.) | AUR |
 | `matugen` | Material you color generation for DMS theming | official |
 | `dsearch` | DMS spotlight file search | AUR |
 | `dankcalendar-bin` | DMS calendar integration | AUR |
