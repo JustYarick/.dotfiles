@@ -2,15 +2,7 @@
 
 My configuration files for an **Arch Linux** based system with the **Hyprland** tiling window manager.
 
-## Screenshots
 
-| [![Screen 1](./screenshots/screen1.png)](./screenshots/screen1.png) | [![Screen 2](./screenshots/screen2.png)](./screenshots/screen2.png) |
-|:---:|:---:|
-| **Workspace 1** (Hyprland) | **Workspace 2** (Hyprland) |
-
-| [![DMS](./screenshots/dms.png)](./screenshots/dms.png) | |
-|:---:|:---:|
-| **DankMaterialShell** (Shell) | |
 
 ---
 
@@ -24,11 +16,19 @@ My configuration files for an **Arch Linux** based system with the **Hyprland** 
 ## Installation
 
 [GNU Stow](https://www.gnu.org/software/stow/) is used for managing the configurations.
+The repository is split into common configurations and machine-specific configurations (desktop/laptop).
 
 ```bash
 git clone https://github.com/JustYarick/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-stow .
+
+# 1. Install common configs
+stow common
+
+# 2. Install machine-specific configs (choose ONE)
+stow desktop  # For desktop PC
+# OR
+stow laptop   # For laptop
 ```
 
 > Many packages are installed from the **AUR** — using `yay` is recommended.
