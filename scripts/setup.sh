@@ -116,6 +116,34 @@ for item in $PKGS_RAW; do
   fi
 done
 
+# ── Post-install: system configuration ─────────
+
+# Force the ntfs-3g (FUSE) driver for NTFS instead of the kernel ntfs3 driver.
+# ntfs-3g is safer for writes (kernel ntfs3 has known data-loss bugs on USB)
+# and gives clearer errors on unclean volumes.
+configure_udisks2_ntfs() {
+  local conf="/etc/udisks2/mount_options.conf"
+
+  if [[ -f "$conf" ]] && grep -q "ntfs_drivers" "$conf" 2>/dev/null; then
+    _log SKIP "udisks2: NTFS driver already configured in $conf"
+    return 0
+  fi
+
+  if [[ "$DRY_RUN" == "true" ]]; then
+    _log INFO "[DRY-RUN] Will write $conf with: ntfs_drivers = ntfs"
+    return 0
+  fi
+
+  _log INFO "Configuring udisks2 to use the ntfs-3g driver for NTFS..."
+  sudo mkdir -p "$(dirname "$conf")"
+  printf '%s\n' '[defaults]' 'ntfs_drivers = ntfs' | sudo tee "$conf" >/dev/null
+  sudo systemctl restart udisks2 2>/dev/null \
+    && _log INFO "udisks2 restarted" \
+    || _log WARN "Could not restart udisks2"
+}
+
+configure_udisks2_ntfs
+
 # Final Message
 if [[ "$DRY_RUN" == "true" ]]; then
   _log INFO "Simulation completed successfully."

@@ -1,2 +1,4 @@
 *.env
 install.log
+**/DankMaterialShell/.changelog-*
+**/DankMaterialShell/.firstlaunch

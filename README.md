@@ -73,6 +73,11 @@ stow laptop   # For laptop
 | **File Management and Wallpapers** | | |
 | `yazi` | Terminal file manager | official |
 | `nautilus` | GUI file manager | official |
+| `udisks2` | Storage daemon; automount of USB/flash drives | official |
+| `ntfs-3g` | NTFS read/write (USB drives from Windows) | official |
+| `exfatprogs` | exFAT support (large flash drives) | official |
+| `dosfstools` | FAT32/vfat filesystem utilities | official |
+| `mtools` | FAT volume tools (badblocks, etc.) | official |
 | `mpvpaper` | Wallpaper backend: video | AUR |
 | `grim` | Screen capture for Wayland | official |
 | `slurp` | Interactive screen region selection | official |
@@ -85,7 +90,6 @@ stow laptop   # For laptop
 | **Languages and Runtimes** | | |
 | `nodejs` | JavaScript runtime (Node.js) | official |
 | `npm` | Node package manager | official |
-| `angular-cli` | CLI for Angular projects | npm |
 | `pyenv` | Python version manager | AUR |
 | `python-pip` | Python package manager | official |
 | `mongodb-bin` | MongoDB database | AUR |
@@ -128,5 +132,7 @@ stow laptop   # For laptop
 | `noto-fonts-cjk` | CJK support: Chinese, Japanese, Korean | official |
 | `noto-fonts-emoji` | Emoji support | official |
 | `adwaita-icon-theme` | Adwaita icons and cursors | official |
+
+> **NTFS from Windows**: volumes that were not cleanly unmounted (e.g. Fast Startup/hibernation) are refused read-write by both kernel `ntfs3` and `ntfs-3g`. They still mount read-only (`udisksctl mount -b /dev/... -o ro`). To make them writable again, run `chkdsk` in Windows; there is no `ntfsfix` package on Arch.
 
 ---
