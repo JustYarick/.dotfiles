@@ -1,6 +1,6 @@
 # .dotfiles
 
-My configuration files for an **Arch Linux** based system with the **Hyprland** tiling window manager.
+My configuration files for an **Arch Linux** based system with the **Hyprland** and **niri** (scrollable-tiling) Wayland compositors.
 
 
 
@@ -9,6 +9,7 @@ My configuration files for an **Arch Linux** based system with the **Hyprland** 
 ## Configuration Overview
 
 *   **Hyprland**: A dynamic Wayland tiling compositor that provides smooth animations and flexible window management.
+*   **niri**: A scrollable-tiling Wayland compositor — alternative session, shares the same DMS shell.
 *   **DankMaterialShell (DMS)**: Modern desktop shell — status bar, spotlight launcher, notifications, control center, lock screen, idle, and polkit agent (replaces Waybar, SwayNC, Wofi/Rofi, Hyprlock, Hypridle, Wlogout, Flameshot).
 
 ---
@@ -33,6 +34,30 @@ stow laptop   # For laptop
 
 > Many packages are installed from the **AUR** — using `yay` is recommended.
 
+### Switching between Hyprland and niri
+
+Both compositors use the same DMS shell, so the desktop looks identical. The DMS greeter
+lists every session found in `/usr/share/wayland-sessions/` (`hyprland.desktop` and `niri.desktop`)
+and remembers the last selected one.
+
+On a fresh machine, after the first login into **niri**, deploy the DMS-generated fragments
+(gaps, colors, binds, alt-tab) so the `include` of `dms/*.kdl` in the niri config works:
+
+```bash
+mkdir -p ~/.config/niri/dms
+dms setup alttab binds colors layout
+```
+
+Start DMS together with the niri session:
+
+```bash
+systemctl --user add-wants niri.service dms
+```
+
+> **niri on NVIDIA**: niri needs kernel modesetting (`nvidia-drm.modeset=1`). The NVIDIA driver
+> also has a VRAM heap-reuse quirk; if `niri` uses ~1 GB of VRAM, apply the documented profile
+> fix, see <https://niri-wm.github.io/niri/Nvidia.html>.
+
 ---
 
 ## Package List
@@ -45,8 +70,11 @@ stow laptop   # For laptop
 | `libva-nvidia-driver` | Hardware video acceleration (VA-API) | AUR |
 | **Shell and Window Manager** | | |
 | `hyprland` | Main tiling WM (Wayland) | official |
+| `niri` | Scrollable-tiling Wayland compositor (alternative to Hyprland) | official |
+| `xwayland-satellite` | XWayland for niri (X11 apps) | official |
 | `uwsm` | Universal Wayland Session Manager | AUR |
-| `xdg-desktop-portal-hyprland` | System portals: screenshots, screen sharing | official |
+| `xdg-desktop-portal-hyprland` | System portals: screenshots, screen sharing (Hyprland) | official |
+| `xdg-desktop-portal-gnome` | Screen-capture portal backend for niri | official |
 | `dms-shell` | DankMaterialShell desktop shell (status bar, launcher, notifications, lock, idle, polkit) | official |
 | `matugen` | Material you color generation for DMS theming | official |
 | `dsearch` | DMS spotlight file search | AUR |
