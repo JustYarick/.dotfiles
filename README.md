@@ -58,6 +58,22 @@ systemctl --user add-wants niri.service dms
 > also has a VRAM heap-reuse quirk; if `niri` uses ~1 GB of VRAM, apply the documented profile
 > fix, see <https://niri-wm.github.io/niri/Nvidia.html>.
 
+### App theming (DMS matugen)
+
+DankMaterialShell regenerates app colors on every wallpaper/theme change:
+
+- **zed** — `common/.config/zed` is stowed as a whole; DMS writes
+  `themes/dank-zed-theme.json` through the symlink and `settings.json` selects
+  the `DankShell Dark` / `DankShell Light` themes. Nothing else to do.
+- **firefox** — [Material Fox](https://github.com/edelvarden/material-fox-updated)
+  provides the base UI theme; DMS colors replace its palette via
+  `chrome/theme-material-blue.css -> ~/.config/DankMaterialShell/firefox.css`.
+  Run once per machine (also part of `scripts/setup.sh`, idempotent):
+
+  ```bash
+  scripts/setup_firefox.sh   # run after creating Firefox profiles; restart Firefox
+  ```
+
 ---
 
 ## Package List
