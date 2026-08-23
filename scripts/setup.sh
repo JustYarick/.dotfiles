@@ -143,6 +143,14 @@ configure_udisks2_ntfs() {
 }
 
 configure_udisks2_ntfs
+# Configure Firefox themes
+if [[ "$DRY_RUN" == "true" ]]; then
+  _log INFO "[DRY-RUN] Will run scripts/setup_firefox.sh"
+else
+  _log INFO "Setting up Firefox theme..."
+  "$DOTFILES_DIR/scripts/setup_firefox.sh"
+fi
+
 
 # Final Message
 if [[ "$DRY_RUN" == "true" ]]; then
