@@ -151,6 +151,14 @@ else
   "$DOTFILES_DIR/scripts/setup_firefox.sh"
 fi
 
+# Generate DMS config fragments
+if [[ "$DRY_RUN" == "true" ]]; then
+  _log INFO "[DRY-RUN] Will run scripts/setup_dms.sh"
+else
+  _log INFO "Generating DMS config fragments..."
+  "$DOTFILES_DIR/scripts/setup_dms.sh" --all
+fi
+
 
 # Final Message
 if [[ "$DRY_RUN" == "true" ]]; then

@@ -34,19 +34,23 @@ stow laptop   # For laptop
 
 > Many packages are installed from the **AUR** — using `yay` is recommended.
 
+### DMS config fragments
+
+DankMaterialShell generates compositor-specific config fragments (colors, layout, keybinds)
+that are git-ignored. After stowing, regenerate them:
+
+```bash
+scripts/setup_dms.sh              # auto-detect running compositor
+scripts/setup_dms.sh --all        # generate for both Hyprland and niri
+scripts/setup_dms.sh --compositor niri  # explicit compositor
+scripts/setup_dms.sh --matugen    # also generate initial theme colors
+```
+
 ### Switching between Hyprland and niri
 
 Both compositors use the same DMS shell, so the desktop looks identical. The DMS greeter
 lists every session found in `/usr/share/wayland-sessions/` (`hyprland.desktop` and `niri.desktop`)
 and remembers the last selected one.
-
-On a fresh machine, after the first login into **niri**, deploy the DMS-generated fragments
-(gaps, colors, binds, alt-tab) so the `include` of `dms/*.kdl` in the niri config works:
-
-```bash
-mkdir -p ~/.config/niri/dms
-dms setup alttab binds colors layout
-```
 
 Start DMS together with the niri session:
 
