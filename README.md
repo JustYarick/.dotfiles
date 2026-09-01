@@ -22,41 +22,28 @@ The repository is split into common configurations and machine-specific configur
 ```bash
 git clone https://github.com/JustYarick/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-
-# 1. Install common configs
-stow common
-
-# 2. Install machine-specific configs (choose ONE)
-stow desktop  # For desktop PC
-# OR
-stow laptop   # For laptop
+./setup
 ```
 
-> Many packages are installed from the **AUR** — using `yay` is recommended.
+The interactive TUI auto-detects your GPU and machine type, then walks through:
+1. **Environments** — Hyprland, niri, KDE Plasma (multi-select)
+2. **Desktop Shell** — DankMaterialShell or none
+3. **Packages** — grouped by category, pre-selected by profile
+4. **Post-install** — stow, Oh-My-Zsh, tpm, systemd, Firefox theme, DMS/niri, etc.
 
-### Switching between Hyprland and niri
+> Many packages are installed from the **AUR** — using `yay` is recommended (installed automatically if missing).
 
-Both compositors use the same DMS shell, so the desktop looks identical. The DMS greeter
-lists every session found in `/usr/share/wayland-sessions/` (`hyprland.desktop` and `niri.desktop`)
-and remembers the last selected one.
+### Options
 
-On a fresh machine, after the first login into **niri**, deploy the DMS-generated fragments
-(gaps, colors, binds, alt-tab) so the `include` of `dms/*.kdl` in the niri config works:
-
-```bash
-mkdir -p ~/.config/niri/dms
-dms setup alttab binds colors layout
-```
-
-Start DMS together with the niri session:
-
-```bash
-systemctl --user add-wants niri.service dms
-```
-
-> **niri on NVIDIA**: niri needs kernel modesetting (`nvidia-drm.modeset=1`). The NVIDIA driver
-> also has a VRAM heap-reuse quirk; if `niri` uses ~1 GB of VRAM, apply the documented profile
-> fix, see <https://niri-wm.github.io/niri/Nvidia.html>.
+| Flag | Description |
+|:---|:---|
+| `--yes` | Non-interactive mode, auto-select defaults by detection |
+| `--dry-run` | Show what would be done without making changes |
+| `--profile desktop\|laptop` | Override machine type detection |
+| `--gpu nvidia\|amd` | Override GPU detection |
+| `--skip-packages` | Skip package installation |
+| `--skip-stow` | Skip stow configuration |
+| `--only packages\|stow\|post` | Run only a specific stage |
 
 ### App theming (DMS matugen)
 
@@ -83,7 +70,7 @@ DankMaterialShell regenerates app colors on every wallpaper/theme change:
 | **System Components** | | |
 | `nvidia-open` | NVIDIA open kernel modules | official |
 | `nvidia-settings` | GPU settings control panel | official |
-| `libva-nvidia-driver` | Hardware video acceleration (VA-API) | AUR |
+| `libva-nvidia-driver` | Hardware video acceleration (VA-API) | official |
 | **Shell and Window Manager** | | |
 | `hyprland` | Main tiling WM (Wayland) | official |
 | `niri` | Scrollable-tiling Wayland compositor (alternative to Hyprland) | official |
@@ -93,11 +80,11 @@ DankMaterialShell regenerates app colors on every wallpaper/theme change:
 | `xdg-desktop-portal-gnome` | Screen-capture portal backend for niri | official |
 | `dms-shell` | DankMaterialShell desktop shell (status bar, launcher, notifications, lock, idle, polkit) | official |
 | `matugen` | Material you color generation for DMS theming | official |
-| `dsearch` | DMS spotlight file search | AUR |
+| `dsearch-bin` | DMS spotlight file search | AUR |
 | `dankcalendar-bin` | DMS calendar integration | AUR |
 | `power-profiles-daemon` | change CPU power mode | official |
 | **Terminal and Environment** | | |
-| `ghostty` | Main terminal emulator | AUR |
+| `ghostty` | Main terminal emulator | official |
 | `kitty` | Alternative terminal emulator | official |
 | `zsh` | Main shell | official |
 | `oh-my-zsh` | Zsh configuration framework | external |
@@ -134,7 +121,7 @@ DankMaterialShell regenerates app colors on every wallpaper/theme change:
 | **Languages and Runtimes** | | |
 | `nodejs` | JavaScript runtime (Node.js) | official |
 | `npm` | Node package manager | official |
-| `pyenv` | Python version manager | AUR |
+| `pyenv` | Python version manager | official |
 | `python-pip` | Python package manager | official |
 | `mongodb-bin` | MongoDB database | AUR |
 | `mongodb-tools-bin` | MongoDB utilities (mongodump, mongorestore, etc.) | AUR |
@@ -164,10 +151,10 @@ DankMaterialShell regenerates app colors on every wallpaper/theme change:
 | `spotify` | Music streaming | AUR |
 | `localsend-bin` | Local network file transfer (AirDrop alternative) | AUR |
 | `onlyoffice-bin` | Office suite (.docx/.xlsx compatibility) | AUR |
-| `timeshift` | System snapshots and backups | AUR |
+| `timeshift` | System snapshots and backups | official |
 | `cups` | Printing system | official |
 | `vlc-plugins-all` | vlc support | official |
-| `pinta` | paint program | AUR |
+| `pinta` | paint program | official |
 | `gimp` | photo editor | official |
 | `winboat` | windows VM in docker | AUR |
 | **Fonts and Theming** | | |

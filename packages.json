@@ -1,0 +1,229 @@
+{
+  "version": 1,
+
+  "environments": {
+    "hyprland": {
+      "label": "Hyprland",
+      "description": "Dynamic tiling Wayland compositor",
+      "packages": [
+        {"name": "hyprland",                   "source": "official", "description": "Dynamic tiling WM (Wayland)"},
+        {"name": "uwsm",                       "source": "official", "description": "Universal Wayland Session Manager"},
+        {"name": "xdg-desktop-portal-hyprland", "source": "official", "description": "XDG portals for Hyprland"}
+      ]
+    },
+    "niri": {
+      "label": "niri",
+      "description": "Scrollable-tiling Wayland compositor",
+      "packages": [
+        {"name": "niri",                       "source": "official", "description": "Scrollable-tiling Wayland compositor"},
+        {"name": "xwayland-satellite",         "source": "official", "description": "XWayland for niri (X11 apps)"},
+        {"name": "xdg-desktop-portal-gnome",   "source": "official", "description": "Screen-capture portal for niri"}
+      ]
+    },
+    "kde": {
+      "label": "KDE Plasma",
+      "description": "Full desktop environment (install only, no dotfiles)",
+      "packages": [
+        {"name": "plasma-meta",                "source": "official", "description": "KDE Plasma desktop (meta)"},
+        {"name": "sddm",                       "source": "official", "description": "Display manager for KDE"},
+        {"name": "xdg-desktop-portal-kde",     "source": "official", "description": "XDG portals for KDE"}
+      ]
+    }
+  },
+
+  "shells": {
+    "dms": {
+      "label": "DankMaterialShell",
+      "description": "Material 3 shell: bar, launcher, notifications, lock, idle, polkit",
+      "supports": ["hyprland", "niri"],
+      "packages": {
+        "base": [
+          {"name": "dms-shell",                "source": "official", "description": "DMS base shell"},
+          {"name": "matugen",                  "source": "official", "description": "Material You color generation"},
+          {"name": "dsearch-bin",              "source": "aur",      "description": "DMS spotlight file search"},
+          {"name": "dankcalendar-bin",         "source": "aur",      "description": "DMS calendar integration"}
+        ],
+        "hyprland": [
+          {"name": "dms-shell-hyprland",       "source": "official", "description": "DMS integration for Hyprland"}
+        ],
+        "niri": [
+          {"name": "dms-shell-niri",           "source": "official", "description": "DMS integration for niri"}
+        ]
+      }
+    }
+  },
+
+  "categories": {
+    "gpu_nvidia": {
+      "label": "GPU Drivers (NVIDIA)",
+      "tags": ["nvidia"],
+      "packages": [
+        {"name": "nvidia-open",            "source": "official", "description": "NVIDIA open kernel modules",          "default": true},
+        {"name": "nvidia-settings",        "source": "official", "description": "GPU settings control panel",          "default": true},
+        {"name": "libva-nvidia-driver",    "source": "official", "description": "Hardware video acceleration (VA-API)", "default": true}
+      ]
+    },
+    "gpu_amd": {
+      "label": "GPU Drivers (AMD)",
+      "tags": ["amd"],
+      "packages": [
+        {"name": "mesa",                   "source": "official", "description": "Open-source OpenGL/Vulkan",            "default": true},
+        {"name": "vulkan-radeon",          "source": "official", "description": "Vulkan driver for AMD (RADV)",         "default": true},
+        {"name": "libva-mesa-driver",      "source": "official", "description": "VA-API hardware video acceleration",   "default": true},
+        {"name": "lib32-mesa",             "source": "official", "description": "32-bit Mesa (for Steam/Wine)",         "default": true}
+      ]
+    },
+    "terminal": {
+      "label": "Terminal & Shell",
+      "tags": ["core"],
+      "packages": [
+        {"name": "ghostty",                "source": "official", "description": "Main terminal emulator",               "default": true},
+        {"name": "kitty",                  "source": "official", "description": "Alternative terminal emulator",        "default": true},
+        {"name": "zsh",                    "source": "official", "description": "Main shell",                           "default": true},
+        {"name": "tmux",                   "source": "official", "description": "Terminal multiplexer",                 "default": true},
+        {"name": "fastfetch",              "source": "official", "description": "System info tool",                     "default": true}
+      ]
+    },
+    "audio": {
+      "label": "Audio & Multimedia",
+      "tags": ["core"],
+      "packages": [
+        {"name": "pipewire",               "source": "official", "description": "Main audio server",                    "default": true},
+        {"name": "pipewire-pulse",         "source": "official", "description": "PulseAudio-compatible layer",          "default": true},
+        {"name": "pipewire-alsa",          "source": "official", "description": "ALSA-compatible layer",                "default": true},
+        {"name": "wireplumber",            "source": "official", "description": "Session manager for PipeWire",         "default": true},
+        {"name": "easyeffects",            "source": "official", "description": "Audio processing and tuning",          "default": true},
+        {"name": "lsp-plugins",            "source": "official", "description": "Audio filters for EasyEffects",        "default": true},
+        {"name": "rnnoise",                "source": "official", "description": "Neural network noise reduction",       "default": true},
+        {"name": "playerctl",              "source": "official", "description": "Media player control",                 "default": true},
+        {"name": "helvum",                 "source": "official", "description": "PipeWire audio stream graph",          "default": false}
+      ]
+    },
+    "files": {
+      "label": "File Management & Screen Capture",
+      "tags": ["core"],
+      "packages": [
+        {"name": "yazi",                   "source": "official", "description": "Terminal file manager",                "default": true},
+        {"name": "nautilus",               "source": "official", "description": "GUI file manager",                     "default": true},
+        {"name": "udisks2",                "source": "official", "description": "Storage daemon; automount USB",        "default": true},
+        {"name": "ntfs-3g",                "source": "official", "description": "NTFS read/write (Windows drives)",     "default": true},
+        {"name": "exfatprogs",             "source": "official", "description": "exFAT support",                        "default": true},
+        {"name": "dosfstools",             "source": "official", "description": "FAT32/vfat filesystem utilities",      "default": true},
+        {"name": "mtools",                 "source": "official", "description": "FAT volume tools",                     "default": true},
+        {"name": "mpvpaper",               "source": "aur",      "description": "Wallpaper backend: video",             "default": true},
+        {"name": "grim",                   "source": "official", "description": "Screen capture for Wayland",           "default": true},
+        {"name": "slurp",                  "source": "official", "description": "Interactive screen region selection",   "default": true}
+      ]
+    },
+    "editors": {
+      "label": "Editors",
+      "tags": ["core"],
+      "packages": [
+        {"name": "neovim",                 "source": "official", "description": "Main editor (LazyVim)",                "default": true},
+        {"name": "zed",                    "source": "official", "description": "Alternative editor / IDE",             "default": true}
+      ]
+    },
+    "containers": {
+      "label": "Containerization",
+      "tags": ["dev"],
+      "packages": [
+        {"name": "docker",                 "source": "official", "description": "Application containerization",         "default": true},
+        {"name": "docker-compose",         "source": "official", "description": "Multi-container orchestration",        "default": true}
+      ]
+    },
+    "languages": {
+      "label": "Languages & Runtimes",
+      "tags": ["dev"],
+      "packages": [
+        {"name": "nodejs",                 "source": "official", "description": "JavaScript runtime",                   "default": true},
+        {"name": "npm",                    "source": "official", "description": "Node package manager",                 "default": true},
+        {"name": "pyenv",                  "source": "official", "description": "Python version manager",               "default": true},
+        {"name": "python-pip",             "source": "official", "description": "Python package manager",               "default": true},
+        {"name": "mongodb-bin",            "source": "aur",      "description": "MongoDB database",                     "default": false},
+        {"name": "mongodb-tools-bin",      "source": "aur",      "description": "MongoDB utilities",                    "default": false}
+      ]
+    },
+    "git_tools": {
+      "label": "Git",
+      "tags": ["core"],
+      "packages": [
+        {"name": "git",                    "source": "official", "description": "Version control system",               "default": true},
+        {"name": "lazygit",                "source": "official", "description": "TUI client for Git",                   "default": true}
+      ]
+    },
+    "network": {
+      "label": "Network & Security",
+      "tags": ["core"],
+      "packages": [
+        {"name": "networkmanager",         "source": "official", "description": "Network connection management",        "default": true},
+        {"name": "network-manager-applet", "source": "official", "description": "NetworkManager tray applet",          "default": true},
+        {"name": "ufw",                    "source": "official", "description": "Uncomplicated Firewall",               "default": true},
+        {"name": "v2ray-bin",              "source": "aur",      "description": "V2Ray proxy core",                     "default": false},
+        {"name": "throne-bin",             "source": "aur",      "description": "Proxy / VCS tool",                     "default": false}
+      ]
+    },
+    "browsers": {
+      "label": "Browsers",
+      "tags": ["optional"],
+      "packages": [
+        {"name": "google-chrome",          "source": "aur",      "description": "Main browser",                         "default": true},
+        {"name": "firefox",                "source": "official", "description": "Secondary browser",                    "default": true},
+        {"name": "brave-bin",              "source": "aur",      "description": "Privacy-focused browser",              "default": true}
+      ]
+    },
+    "messaging": {
+      "label": "Messaging & Communication",
+      "tags": ["optional"],
+      "packages": [
+        {"name": "telegram-desktop",       "source": "official", "description": "Telegram messenger",                   "default": true},
+        {"name": "com.discordapp.Discord", "source": "flatpak",  "description": "Discord with auto-updates",            "default": true},
+        {"name": "teamspeak3",             "source": "official", "description": "TeamSpeak 3 voice chat",               "default": false},
+        {"name": "teamspeak",              "source": "aur",      "description": "TeamSpeak 6 beta",                     "default": false}
+      ]
+    },
+    "gaming": {
+      "label": "Gaming",
+      "tags": ["gaming"],
+      "packages": [
+        {"name": "steam",                  "source": "official", "description": "Valve's gaming platform",              "default": false},
+        {"name": "gamescope",              "source": "official", "description": "Micro-compositor (HDR, upscaling)",     "default": false}
+      ]
+    },
+    "utilities": {
+      "label": "Utilities",
+      "tags": ["optional"],
+      "packages": [
+        {"name": "obs-studio",             "source": "official", "description": "Recording and streaming",              "default": false},
+        {"name": "spotify",                "source": "aur",      "description": "Music streaming",                      "default": true},
+        {"name": "localsend-bin",          "source": "aur",      "description": "Local network file transfer",          "default": false},
+        {"name": "onlyoffice-bin",         "source": "aur",      "description": "Office suite",                         "default": false},
+        {"name": "timeshift",              "source": "official", "description": "System snapshots and backups",         "default": true},
+        {"name": "cups",                   "source": "official", "description": "Printing system",                      "default": true},
+        {"name": "vlc-plugins-all",        "source": "official", "description": "VLC with all plugins",                "default": true},
+        {"name": "pinta",                  "source": "official", "description": "Paint program",                        "default": false},
+        {"name": "gimp",                   "source": "official", "description": "Photo editor",                         "default": false},
+        {"name": "winboat",               "source": "aur",      "description": "Windows VM in Docker",                 "default": false}
+      ]
+    },
+    "fonts": {
+      "label": "Fonts & Theming",
+      "tags": ["core"],
+      "packages": [
+        {"name": "ttf-jetbrains-mono-nerd","source": "official", "description": "Main monospace font + Nerd Icons",     "default": true},
+        {"name": "noto-fonts",             "source": "official", "description": "Universal font set",                   "default": true},
+        {"name": "noto-fonts-cjk",         "source": "official", "description": "CJK support",                         "default": true},
+        {"name": "noto-fonts-emoji",       "source": "official", "description": "Emoji support",                        "default": true},
+        {"name": "adwaita-icon-theme",     "source": "official", "description": "Adwaita icons and cursors",            "default": true},
+        {"name": "power-profiles-daemon",  "source": "official", "description": "Change CPU power mode",               "default": true}
+      ]
+    }
+  },
+
+  "external": [
+    {"id": "oh-my-zsh",                "label": "Oh My Zsh",              "url":  "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"},
+    {"id": "powerlevel10k",            "label": "Powerlevel10k",          "repo": "https://github.com/romkatv/powerlevel10k.git"},
+    {"id": "tpm",                      "label": "tmux Plugin Manager",    "repo": "https://github.com/tmux-plugins/tpm.git"},
+    {"id": "zsh-autosuggestions",      "label": "zsh-autosuggestions",    "repo": "https://github.com/zsh-users/zsh-autosuggestions.git"},
+    {"id": "zsh-syntax-highlighting",  "label": "zsh-syntax-highlighting","repo": "https://github.com/zsh-users/zsh-syntax-highlighting.git"}
+  ]
+}

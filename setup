@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# setup — bootstrap wrapper for dotsetup
+set -euo pipefail
+
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Ensure Python >= 3.9
+if ! command -v python3 &>/dev/null; then
+    echo "[bootstrap] Python not found, installing..."
+    sudo pacman -S --noconfirm python
+fi
+
+PY_VER=$(python3 -c 'import sys; v=sys.version_info; print(f"{v.major}.{v.minor}")')
+PY_MAJ=${PY_VER%%.*}
+PY_MIN=${PY_VER##*.}
+if [ "$PY_MAJ" -lt 3 ] || { [ "$PY_MAJ" -eq 3 ] && [ "$PY_MIN" -lt 9 ]; }; then
+    echo "[bootstrap] Python >= 3.9 required (found $PY_VER)"
+    exit 1
+fi
+
+# Ensure stow is available
+if ! command -v stow &>/dev/null; then
+    echo "[bootstrap] GNU Stow not found, installing..."
+    sudo pacman -S --noconfirm stow
+fi
+
+cd "$DOTFILES_DIR"
+exec python3 -m scripts.dotsetup "$@"
