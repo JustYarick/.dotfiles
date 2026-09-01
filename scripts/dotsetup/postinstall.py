@@ -41,8 +41,8 @@ TASKS: list[dict] = [
         "default": True,
     },
     {
-        "id": "dms_niri",
-        "label": "Configure DMS/niri fragments + systemd user wants",
+        "id": "dms_setup",
+        "label": "Configure DMS (generate config fragments)",
         "default": True,
     },
     {
@@ -66,7 +66,7 @@ def run(selected_task_ids: list[str], env: object, dry_run: bool = False) -> Non
         "tpm": lambda: setup_tpm(dry_run),
         "systemd": lambda: setup_systemd(dry_run),
         "firefox": lambda: setup_firefox(dry_run),
-        "dms_niri": lambda: setup_dms_niri(dry_run),
+        "dms_setup": lambda: setup_dms(dry_run),
         "udisks2": lambda: configure_udisks2(dry_run),
         "ufw_conf": lambda: setup_ufw(dry_run),
     }
@@ -162,18 +162,25 @@ def setup_firefox(dry_run: bool) -> None:
     run_cmd(["bash", str(script)], dry_run=dry_run)
 
 
-def setup_dms_niri(dry_run: bool) -> None:
-    """Generate DMS fragments for niri and wire the systemd user service."""
-    dms_dir = Path.home() / ".config/niri/dms"
-    if dms_dir.exists() and any(dms_dir.iterdir()):
-        _log().skip("DMS niri fragments already present")
+def setup_dms(dry_run: bool) -> None:
+    """Run dms setup interactively to generate config fragments."""
+    if dry_run:
+        _log().info("[DRY-RUN] Would run interactive dms setup")
     else:
-        _log().info("Generating DMS niri fragments...")
-        run_cmd(
-            ["dms", "setup", "alttab", "binds", "colors", "layout"],
-            dry_run=dry_run,
-        )
-    # Ensure DMS starts with niri session
+        _log().info("Starting interactive DMS configuration...")
+        print("")
+        print("=== DMS Setup Interactive ===")
+        # Note: We run it in the foreground without capturing output.
+        # This allows the user to see the prompts and answer them natively.
+        try:
+            # We use subprocess.run directly with no captures to ensure TTY works
+            import subprocess
+            subprocess.run(["dms", "setup", "alttab", "binds", "colors", "cursor", "layout", "outputs", "windowrules"])
+        except Exception as e:
+            _log().error(f"Failed to run dms setup: {e}")
+        print("=============================\n")
+
+    # Ensure DMS starts with niri session (idempotent)
     run_cmd(
         ["systemctl", "--user", "add-wants", "niri.service", "dms"],
         dry_run=dry_run,
