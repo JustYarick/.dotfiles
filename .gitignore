@@ -2,3 +2,12 @@
 install.log
 **/DankMaterialShell/.changelog-*
 **/DankMaterialShell/.firstlaunch
+
+# DMS (DankMaterialShell / QuickShell) — auto-generated, run scripts/setup_dms.sh
+**/hypr/dms/
+**/niri/dms/
+**/DankMaterialShell/firefox.css
+common/.config/ghostty/themes/dankcolors
+common/.config/nvim/colors/dms.lua
+common/.config/zed/themes/dank-zed-theme.json
+__pycache__/
