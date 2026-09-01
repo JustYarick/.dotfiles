@@ -9,3 +9,5 @@ common/.config/ghostty/themes/dankcolors
 common/.config/nvim/colors/dms.lua
 common/.config/zed/themes/dank-zed-theme.json
 __pycache__/
+**/hypr/dms/
+**/niri/dms/
