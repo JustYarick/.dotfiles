@@ -118,13 +118,20 @@ def setup_omz(dry_run: bool) -> None:
 
 
 def setup_tpm(dry_run: bool) -> None:
-    """Clone tmux plugin manager."""
+    """Clone tmux plugin manager and install plugins."""
     tpm_dir = Path.home() / ".tmux/plugins/tpm"
     clone_if_missing(
         tpm_dir,
         "https://github.com/tmux-plugins/tpm.git",
         dry_run,
     )
+    # Install all plugins defined in .tmux.conf (idempotent — skips already installed)
+    install_script = tpm_dir / "bin" / "install_plugins"
+    if install_script.exists():
+        _log().info("Installing tmux plugins via TPM...")
+        run_cmd([str(install_script)], dry_run=dry_run)
+    else:
+        _log().warn("TPM install_plugins script not found — skipping plugin install")
 
 
 def setup_systemd(dry_run: bool) -> None:
