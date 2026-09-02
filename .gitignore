@@ -6,6 +6,7 @@ install.log
 # DMS (DankMaterialShell / QuickShell) — auto-generated, run scripts/setup_dms.sh
 **/DankMaterialShell/firefox.css
 common/.config/ghostty/themes/dankcolors
+common/.config/kitty/dank-*.conf
 common/.config/nvim/colors/dms.lua
 common/.config/zed/themes/dank-zed-theme.json
 __pycache__/
