@@ -55,6 +55,11 @@ TASKS: list[dict] = [
         "label": "Configure ufw defaults (deny incoming, allow outgoing)",
         "default": True,
     },
+    {
+        "id": "captive_portal",
+        "label": "Setup captive portal detection (auto-open login page on public Wi-Fi)",
+        "default": True,
+    },
 ]
 
 
@@ -69,6 +74,7 @@ def run(selected_task_ids: list[str], env: object, dry_run: bool = False) -> Non
         "dms_setup": lambda: setup_dms(dry_run),
         "udisks2": lambda: configure_udisks2(dry_run),
         "ufw_conf": lambda: setup_ufw(dry_run),
+        "captive_portal": lambda: setup_captive_portal(dry_run),
     }
     for task in TASKS:
         tid = task["id"]
@@ -236,3 +242,50 @@ def setup_ufw(dry_run: bool) -> None:
     run_cmd(["sudo", "ufw", "default", "deny", "incoming"], dry_run=dry_run)
     run_cmd(["sudo", "ufw", "default", "allow", "outgoing"], dry_run=dry_run)
     run_cmd(["sudo", "ufw", "--force", "enable"], dry_run=dry_run)
+
+
+def setup_captive_portal(dry_run: bool) -> None:
+    """Deploy NM dispatcher script for captive portal detection + browser auto-open."""
+    target = Path("/etc/NetworkManager/dispatcher.d/90-captive-portal.sh")
+    source = get_dotfiles_dir() / "scripts" / "captive-portal-dispatcher.sh"
+
+    if not source.exists():
+        _log().error("captive-portal-dispatcher.sh not found in scripts/ — skipping")
+        return
+
+    # Check if already deployed and identical
+    if target.exists():
+        try:
+            if target.read_text() == source.read_text():
+                _log().skip("Captive portal dispatcher already deployed")
+                # Still ensure the service is enabled
+                run_cmd(
+                    ["sudo", "systemctl", "enable", "NetworkManager-dispatcher"],
+                    dry_run=dry_run,
+                    check=False,
+                )
+                return
+        except PermissionError:
+            pass  # Can't read target — deploy anyway
+
+    _log().info("Deploying captive portal dispatcher script...")
+    run_cmd(
+        ["sudo", "cp", str(source), str(target)],
+        dry_run=dry_run,
+    )
+    run_cmd(
+        ["sudo", "chmod", "755", str(target)],
+        dry_run=dry_run,
+    )
+    run_cmd(
+        ["sudo", "chown", "root:root", str(target)],
+        dry_run=dry_run,
+    )
+
+    # Ensure the dispatcher service is enabled
+    _log().info("Enabling NetworkManager-dispatcher service...")
+    run_cmd(
+        ["sudo", "systemctl", "enable", "NetworkManager-dispatcher"],
+        dry_run=dry_run,
+    )
+
