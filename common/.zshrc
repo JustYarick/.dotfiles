@@ -83,6 +83,17 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Load environment variables from .env if present
+if [[ -f "$HOME/.dotfiles/.env" ]]; then
+  set -a
+  source "$HOME/.dotfiles/.env"
+  set +a
+elif [[ -f "$HOME/.env" ]]; then
+  set -a
+  source "$HOME/.env"
+  set +a
+fi
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -120,7 +131,7 @@ alias oc='opencode'
 alias ff='fastfetch'
 
 # source export
-export PATH=/home/yarick/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Функция-обёртка для yazi
@@ -145,12 +156,10 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init - zsh)"
 # eval "$(pyenv virtualenv-init -)"
 
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
-export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+# Android SDK tools (ANDROID_HOME loaded from .env)
+if [[ -n "$ANDROID_HOME" ]]; then
+  export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
+fi
 
-
-# Added by Antigravity CLI installer
-export PATH="/home/yarick/.local/bin:$PATH"
+# Antigravity CLI installer & user binaries
 export PATH="$HOME/.local/bin:$PATH"

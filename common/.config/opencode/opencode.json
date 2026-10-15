@@ -3,7 +3,7 @@
   "providers": {
     "ollama": {
       "settings": {
-        "baseURL": "http://127.0.0.1:11434/v1"
+        "baseURL": "${OLLAMA_BASE_URL}"
       },
       "models": {
         "qwen3.8:iq4": {

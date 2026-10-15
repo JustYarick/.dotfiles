@@ -11,7 +11,7 @@
     providers:
       ollama:
         api: openai-completions
-        baseURL: http://127.0.0.1:11434/v1
+        baseURL: !!js 'process.env.OLLAMA_BASE_URL || "http://127.0.0.1:11434/v1"'
         apiKeyEnv: OLLAMA_API_KEY
         models:
           - id: qwen3.8:iq4

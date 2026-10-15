@@ -33,7 +33,7 @@ if [ "$CONNECTIVITY" = "portal" ]; then
     # Find wayland display socket
     WAYLAND_SOCK=$(find "$XDG_RUNTIME" -maxdepth 1 -name 'wayland-*' ! -name '*.lock' -printf '%f\n' 2>/dev/null | head -1)
 
-    PORTAL_URL="http://ping.archlinux.org/nm-check.txt"
+    PORTAL_URL="${PORTAL_URL:-http://ping.archlinux.org/nm-check.txt}"
 
     run_as_user() {
         sudo -u "$ACTIVE_USER" \
