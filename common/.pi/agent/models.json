@@ -1,0 +1,114 @@
+{
+  "$schema": "https://pi.dev/schemas/models.schema.json",
+  "providers": {
+    "ollama": {
+      "baseUrl": "http://127.0.0.1:11434/v1",
+      "api": "openai-completions",
+      "apiKey": "ollama",
+      "models": [
+        {
+          "id": "saluki:32k",
+          "name": "Underdog Saluki 27B (32k)",
+          "contextWindow": 32768,
+          "maxTokens": 4096,
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "xhigh"
+          },
+          "samplingParams": {
+            "temperature": 0.1,
+            "top_p": 0.9
+          }
+        },
+        {
+          "id": "saluki:16k",
+          "name": "Underdog Saluki 27B (16k)",
+          "contextWindow": 16384,
+          "maxTokens": 4096,
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "xhigh"
+          },
+          "samplingParams": {
+            "temperature": 0.1,
+            "top_p": 0.9
+          }
+        },
+        {
+          "id": "saluki:64k",
+          "name": "Underdog Saluki 27B (64k)",
+          "contextWindow": 65536,
+          "maxTokens": 4096,
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "xhigh"
+          },
+          "samplingParams": {
+            "temperature": 0.1,
+            "top_p": 0.9
+          }
+        },
+        {
+          "id": "qwen3.8:iq4",
+          "name": "Qwen 3.8 27B IQ4-XS",
+          "contextWindow": 32768,
+          "maxTokens": 4096,
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "xhigh"
+          },
+          "samplingParams": {
+            "temperature": 0.1,
+            "top_p": 0.9
+          }
+        },
+        {
+          "id": "qwen3.8:iq3-fast",
+          "name": "Qwen 3.8 27B IQ3-XXS Fast",
+          "contextWindow": 32768,
+          "maxTokens": 4096,
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "xhigh"
+          },
+          "samplingParams": {
+            "temperature": 0.1,
+            "top_p": 0.9
+          }
+        },
+        {
+          "id": "qwen3-coder:30b",
+          "name": "Qwen 3 Coder 30B MoE",
+          "contextWindow": 32768,
+          "maxTokens": 4096
+        },
+        {
+          "id": "gemma4:26b",
+          "name": "Gemma 4 26B",
+          "contextWindow": 32768,
+          "maxTokens": 4096
+        }
+      ]
+    }
+  }
+}

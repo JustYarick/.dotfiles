@@ -1,0 +1,17 @@
+{
+  "lastChangelogVersion": "1.3.0",
+  "deviceId": "8c58cdf7-afa6-4705-93e6-36289f5396ae",
+  "defaultProvider": "ollama",
+  "defaultModel": "saluki:32k",
+  "defaultThinkingLevel": "off",
+  "compaction": {
+    "enabled": true,
+    "reserveTokens": 4096,
+    "keepRecentTokens": 16384
+  },
+  "tuiMode": "fullscreen",
+  "theme": "system",
+  "enableSkillCommands": true,
+  "enableAnalytics": false,
+  "enableInstallTelemetry": false
+}

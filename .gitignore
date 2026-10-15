@@ -12,3 +12,10 @@ common/.config/zed/themes/dank-zed-theme.json
 __pycache__/
 **/hypr/dms/
 **/niri/dms/
+
+# Pi Agent runtime files
+common/.pi/agent/auth.json
+common/.pi/agent/models-store.json
+common/.pi/agent/sessions/
+common/.pi/agent/bin/
+common/.pi/agent/skills/

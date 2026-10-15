@@ -20,6 +20,8 @@
             name: "Qwen 3 Coder 30B MoE"
           - id: qwen3.5:9b
             name: "Qwen 3.5 9B"
+          - id: saluki:27b
+            name: "Underdog Saluki 27B IQ2"
           - id: gemma4:26b
             name: "Gemma 4 26B"
 - id: agent-default-model

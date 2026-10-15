@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "photocraft": {
+      "command": "photocraft-cli",
+      "args": [
+        "mcp",
+        "--bridge",
+        "127.0.0.1:7878",
+        "--control-token-file",
+        "/home/yarick/.config/photocraft/control.token",
+        "--automation-read-root",
+        "/home/yarick",
+        "--automation-write-root",
+        "/home/yarick"
+      ],
+      "description": "Photocraft automation and media tools"
+    }
+  }
+}
