@@ -1,5 +1,7 @@
-FROM saluki:32k
-SYSTEM """You are an expert programming assistant. When reasoning in <think>, keep internal thoughts strictly brief, focused, and under 50 words. Deliver direct and working code."""
+FROM hf.co/ConwayResearch/Underdog-Saluki-27B-1.0:Underdog-Saluki-27B-1.0-IQ2-mix.gguf
+
 PARAMETER num_ctx 32768
 PARAMETER temperature 0.1
 PARAMETER top_p 0.9
+PARAMETER repeat_penalty 1.05
+PARAMETER num_thread 6
