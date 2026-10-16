@@ -1,13 +1,43 @@
 {
+  "$schema": "https://pi.dev/schemas/settings.schema.json",
   "lastChangelogVersion": "1.3.0",
   "deviceId": "8c58cdf7-afa6-4705-93e6-36289f5396ae",
   "defaultProvider": "ollama",
   "defaultModel": "saluki:32k",
   "defaultThinkingLevel": "off",
+  "quietStartup": "header",
+  "defaultTools": [
+    "read",
+    "bash",
+    "edit",
+    "write"
+  ],
+  "codemode": {
+    "mode": "on",
+    "inlineBudget": 1500
+  },
   "compaction": {
     "enabled": true,
     "reserveTokens": 4096,
-    "keepRecentTokens": 16384
+    "keepRecentTokens": 12000,
+    "modelOverrides": {
+      "ollama/saluki:16k": {
+        "reserveTokens": 3072,
+        "keepRecentTokens": 6144
+      },
+      "ollama/saluki:32k": {
+        "reserveTokens": 4096,
+        "keepRecentTokens": 12000
+      },
+      "ollama/saluki:64k": {
+        "reserveTokens": 6144,
+        "keepRecentTokens": 24000
+      },
+      "ollama/qwen3.8:iq4": {
+        "reserveTokens": 4096,
+        "keepRecentTokens": 16384
+      }
+    }
   },
   "tuiMode": "fullscreen",
   "theme": "system",

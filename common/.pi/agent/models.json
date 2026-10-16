@@ -63,7 +63,7 @@
         {
           "id": "qwen3.8:iq4",
           "name": "Qwen 3.8 27B IQ4-XS",
-          "contextWindow": 32768,
+          "contextWindow": 131072,
           "maxTokens": 4096,
           "reasoning": true,
           "thinkingLevelMap": {
@@ -74,14 +74,14 @@
             "high": "xhigh"
           },
           "samplingParams": {
-            "temperature": 0.1,
-            "top_p": 0.9
+            "temperature": 0.6,
+            "top_p": 0.95
           }
         },
         {
           "id": "qwen3.8:iq3-fast",
           "name": "Qwen 3.8 27B IQ3-XXS Fast",
-          "contextWindow": 32768,
+          "contextWindow": 131072,
           "maxTokens": 4096,
           "reasoning": true,
           "thinkingLevelMap": {
@@ -92,8 +92,8 @@
             "high": "xhigh"
           },
           "samplingParams": {
-            "temperature": 0.1,
-            "top_p": 0.9
+            "temperature": 0.6,
+            "top_p": 0.95
           }
         },
         {

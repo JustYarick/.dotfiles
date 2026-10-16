@@ -108,7 +108,7 @@
             "reasoningEffort": "none"
           },
           "limit": {
-            "context": 32768,
+            "context": 131072,
             "output": 4096
           },
           "variants": [
@@ -144,7 +144,7 @@
             "reasoningEffort": "none"
           },
           "limit": {
-            "context": 32768,
+            "context": 131072,
             "output": 4096
           },
           "variants": [

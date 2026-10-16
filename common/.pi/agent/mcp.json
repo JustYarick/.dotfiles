@@ -13,6 +13,7 @@
         "--automation-write-root",
         "/home/yarick"
       ],
+      "exposure": "deferred",
       "description": "Photocraft automation and media tools"
     }
   }
