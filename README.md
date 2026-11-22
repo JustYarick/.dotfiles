@@ -8,9 +8,27 @@ My configuration files for an **Arch Linux** based system with the **Hyprland** 
 
 ## Configuration Overview
 
-*   **Hyprland**: A dynamic Wayland tiling compositor that provides smooth animations and flexible window management.
-*   **niri**: A scrollable-tiling Wayland compositor — alternative session, shares the same DMS shell.
-*   **DankMaterialShell (DMS)**: Modern desktop shell — status bar, spotlight launcher, notifications, control center, lock screen, idle, and polkit agent (replaces Waybar, SwayNC, Wofi/Rofi, Hyprlock, Hypridle, Wlogout, Flameshot).
+*   **MangoWM + Noctalia Shell (`mango/`)**: Wayland tiling compositor (Dwindle / Scroller / Center-Tile) paired with Noctalia Shell (Fedora / universal setup).
+*   **Hyprland (`desktop/`, `laptop/`)**: Dynamic Wayland tiling compositor with DankMaterialShell (DMS).
+*   **niri (`desktop/`, `laptop/`)**: Scrollable-tiling Wayland compositor sharing the DMS shell.
+
+---
+
+## Modular Stow Packages
+
+| Stow Package | Contents |
+|---|---|
+| `common` | Shared CLI, terminal, editor & agent configs (`zsh`, `p10k`, `tmux`, `nvim`, `ghostty`, `kitty`, `yazi`, `zed`, `btop`, `lazygit`, `lazydocker`, `opencode`, `.pi`, `ollama`) |
+| `mango` | **MangoWM + Noctalia Shell** setup (`.config/mango`, `.config/noctalia`, `.config/environment.d/90-mango.conf`) |
+| `desktop` | Desktop **Hyprland + niri + DMS** setup (`.config/hypr`, `.config/niri`, `systemd/user/hyprland-session.target`) |
+| `laptop` | Laptop **Hyprland + niri + DMS** setup |
+
+Quick manual stow for the MangoWM + Noctalia setup:
+
+```bash
+cd ~/.dotfiles
+stow --restow -t ~ common mango
+```
 
 ---
 

@@ -20,6 +20,15 @@
         {"name": "xdg-desktop-portal-gnome",   "source": "official", "description": "Screen-capture portal for niri"}
       ]
     },
+    "mango": {
+      "label": "MangoWM (MangoWC)",
+      "description": "Multi-layout Wayland tiling compositor (Dwindle / Scroller / Center-Tile)",
+      "packages": [
+        {"name": "mangowm",                    "source": "official", "description": "MangoWM Wayland compositor"},
+        {"name": "xdg-desktop-portal-wlr",     "source": "official", "description": "XDG portal for wlroots/MangoWM"},
+        {"name": "xdg-desktop-portal-gtk",     "source": "official", "description": "GTK file chooser portal"}
+      ]
+    },
     "kde": {
       "label": "KDE Plasma",
       "description": "Full desktop environment (install only, no dotfiles)",
@@ -48,6 +57,16 @@
         ],
         "niri": [
           {"name": "dms-shell-niri",           "source": "official", "description": "DMS integration for niri"}
+        ]
+      }
+    },
+    "noctalia": {
+      "label": "Noctalia Shell",
+      "description": "Native Wayland desktop shell (bar, launcher, notifications, lock, wallpaper, OSD)",
+      "supports": ["mango", "niri", "hyprland"],
+      "packages": {
+        "base": [
+          {"name": "noctalia",                 "source": "official", "description": "Noctalia Wayland desktop shell"}
         ]
       }
     }

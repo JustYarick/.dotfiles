@@ -55,7 +55,12 @@ def main() -> int:
     if not args.skip_stow and args.only in (None, "stow"):
         if selection.run_stow:
             log.info("═══ Applying stow configs ═══")
-            stow_manager.apply(env.machine_type, dry_run=args.dry_run)
+            stow_profile = (
+                "mango"
+                if "mango" in selection.environments and not args.profile
+                else env.machine_type
+            )
+            stow_manager.apply(stow_profile, dry_run=args.dry_run)
 
     # ── 6. Post-install tasks ────────────────────────────────────────────────
     if args.only in (None, "post"):

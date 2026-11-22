@@ -1,2 +1,13 @@
-theme = dankcolors
+# Ghostty config (динамическая тема из обоев Noctalia)
+font-family = JetBrains Mono
+font-size = 11
+
+window-padding-x = 8
+window-padding-y = 8
+background-opacity = 0.92
+background-blur-radius = 20
+
+theme = noctalia
+
+# Перезагрузка конфига на лету
 keybind = ctrl+shift+r=reload_config

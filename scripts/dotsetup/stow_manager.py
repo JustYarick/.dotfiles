@@ -13,14 +13,14 @@ def _log():
 
 
 def apply(machine_type: str, dry_run: bool = False) -> None:
-    """Apply stow packages: ``common`` first, then machine-specific."""
+    """Apply stow packages: ``common`` first, then profile/environment-specific."""
     dotfiles = get_dotfiles_dir()
 
     # Always apply common first
     _stow(dotfiles, "common", dry_run)
 
-    # Then machine-specific
-    if machine_type in ("desktop", "laptop"):
+    # Then profile-specific (mango, desktop, laptop)
+    if machine_type in ("mango", "desktop", "laptop"):
         _stow(dotfiles, machine_type, dry_run)
     else:
         _log().warn(

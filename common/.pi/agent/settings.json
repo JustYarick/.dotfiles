@@ -40,7 +40,7 @@
     }
   },
   "tuiMode": "fullscreen",
-  "theme": "system",
+  "theme": "noctalia",
   "enableSkillCommands": true,
   "enableAnalytics": false,
   "enableInstallTelemetry": false

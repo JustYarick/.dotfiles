@@ -47,9 +47,9 @@ def parse_args(argv: list[str] | None = None) -> Args:
     )
     p.add_argument(
         "--profile",
-        choices=["desktop", "laptop"],
+        choices=["mango", "desktop", "laptop"],
         default=None,
-        help="Override machine type detection",
+        help="Override profile / stow subgroup (mango, desktop, laptop)",
     )
     p.add_argument(
         "--skip-packages",
