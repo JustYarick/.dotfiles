@@ -163,3 +163,26 @@ fi
 
 # Antigravity CLI installer & user binaries
 export PATH="$HOME/.local/bin:$PATH"
+
+# fnm
+FNM_PATH="/home/yarick/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
+fi
+
+# REA (Reverse Engineer Anything) & reverse engineering tools
+export GHIDRA_INSTALL_DIR="/home/yarick/.local/share/rea-tools/ghidra_12.2_PUBLIC"
+export JAVA_HOME="/home/yarick/.local/share/rea-tools/jdk-25"
+export HOPPER_LAUNCHER_PATH="/opt/hopper/bin/Hopper"
+export REA_GHIDRA_CHECKPOINT_DIR="/home/yarick/.local/share/rea-tools/ghidra-checkpoints"
+export REA_PWNTOOLS_PYTHON="/home/yarick/.local/share/rea-tools/py312-venv/bin/python"
+export REA_UNBLOB_COMMAND="/home/yarick/.local/share/rea-tools/py312-venv/bin/unblob"
+export REA_BINWALK_COMMAND="/home/yarick/.local/share/rea-tools/bin/binwalk"
+export REA_TSHARK_COMMAND="/home/yarick/.local/share/rea-tools/bin/tshark"
+export REA_CAPINFOS_COMMAND="/home/yarick/.local/share/rea-tools/bin/capinfos"
+export REA_SIGROK_COMMAND="/home/yarick/.local/share/rea-tools/bin/sigrok-cli"
+export REA_RIZIN_COMMAND="/home/yarick/.local/share/rea-tools/bin/rizin"
+export REA_WABT_BIN_DIRECTORY="/home/yarick/.local/share/rea-tools/wabt-1.0.42/bin"
+export REA_WAKARU_COMMAND="/home/yarick/.local/share/rea-tools/wakaru-1.14.0/wakaru"
+export PATH="/home/yarick/.local/share/rea-tools/bin:/home/yarick/.local/share/rea-tools/jdk-25/bin:$PATH"

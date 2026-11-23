@@ -15,6 +15,28 @@
       ],
       "exposure": "deferred",
       "description": "Photocraft automation and media tools"
+    },
+    "rea": {
+      "command": "/home/yarick/.local/share/fnm/node-versions/v24.22.3/installation/bin/node",
+      "args": [
+        "/home/yarick/.local/share/fnm/node-versions/v24.22.3/installation/bin/rea",
+        "mcp"
+      ],
+      "env": {
+        "GHIDRA_INSTALL_DIR": "/home/yarick/.local/share/rea-tools/ghidra_12.2_PUBLIC",
+        "HOPPER_LAUNCHER_PATH": "/opt/hopper/bin/Hopper",
+        "JAVA_HOME": "/home/yarick/.local/share/rea-tools/jdk-25",
+        "REA_BINWALK_COMMAND": "/home/yarick/.local/share/rea-tools/bin/binwalk",
+        "REA_CAPINFOS_COMMAND": "/home/yarick/.local/share/rea-tools/bin/capinfos",
+        "REA_GHIDRA_CHECKPOINT_DIR": "/home/yarick/.local/share/rea-tools/ghidra-checkpoints",
+        "REA_PWNTOOLS_PYTHON": "/home/yarick/.local/share/rea-tools/py312-venv/bin/python",
+        "REA_RIZIN_COMMAND": "/home/yarick/.local/share/rea-tools/bin/rizin",
+        "REA_SIGROK_COMMAND": "/home/yarick/.local/share/rea-tools/bin/sigrok-cli",
+        "REA_TSHARK_COMMAND": "/home/yarick/.local/share/rea-tools/bin/tshark",
+        "REA_UNBLOB_COMMAND": "/home/yarick/.local/share/rea-tools/py312-venv/bin/unblob",
+        "REA_WABT_BIN_DIRECTORY": "/home/yarick/.local/share/rea-tools/wabt-1.0.42/bin",
+        "REA_WAKARU_COMMAND": "/home/yarick/.local/share/rea-tools/wakaru-1.14.0/wakaru"
+      }
     }
   }
 }

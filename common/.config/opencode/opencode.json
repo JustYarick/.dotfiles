@@ -209,6 +209,18 @@
           "--automation-write-root",
           "/home/yarick"
         ]
+      },
+      "rea": {
+        "type": "local",
+        "command": [
+          "/run/user/1000/fnm_multishells/29618_1795413261442/bin/node",
+          "/home/yarick/.npm/_npx/af752b90495482d7/node_modules/.bin/rea",
+          "mcp"
+        ],
+        "disabled": false,
+        "environment": {
+          "HOPPER_LAUNCHER_PATH": "/opt/hopper/bin/Hopper"
+        }
       }
     }
   }
