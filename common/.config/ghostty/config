@@ -10,5 +10,9 @@ confirm-close-surface = false
 
 theme = noctalia
 
+# Шлейф курсора + лёгкое свечение (GLSL-шейдеры, подхватывают цвета темы Noctalia)
+custom-shader = shaders/cursor_sweep.glsl
+custom-shader = shaders/bloom.glsl
+
 # Перезагрузка конфига на лету
 keybind = ctrl+shift+r=reload_config
